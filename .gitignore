@@ -6,6 +6,15 @@ __pycache__/
 # C extensions
 *.so
 
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media
+
 # Distribution / packaging
 .Python
 build/
