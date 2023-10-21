@@ -20,5 +20,8 @@ from mapchatapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index')
+    path('', views.index, name='index'),
+
+    path('login', views.login),
+    path('firebase_login_save', views.firebase_login_save),
 ]
