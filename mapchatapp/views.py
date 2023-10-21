@@ -65,6 +65,7 @@ def firebase_login_save(request):
         user=firebase_dict["users"]
         if len(user)>0:
             user_one=user[0]
+            """
             if "phoneNumber" in user_one:
                 if user_one["phoneNumber"]==email:
                     data=proceedToLogin(request,email, username, token, provider)
@@ -82,6 +83,17 @@ def firebase_login_save(request):
                         return HttpResponse("Please Verify Your Email to Get Login")
                 else:
                     return HttpResponse("Unknown Email User")
+            """
+            print(email)
+            if email==user_one["email"]:
+                provider1=user_one["providerUserInfo"][0]["providerId"]
+                if user_one["emailVerified"]==1 or user_one["emailVerified"]==True or user_one["emailVerified"]=="True" or provider1=="facebook.com":
+                    data=proceedToLogin(request,email,username,token,provider)
+                    return HttpResponse(data)
+                else:
+                    return HttpResponse("Please Verify Your Email to Get Login")
+            else:
+                return HttpResponse("Unknown Email User")
         else:
             return HttpResponse("Invalid Request User Not Found")
     else:
@@ -105,11 +117,11 @@ def proceedToLogin(request,email,username,token,provider):
     if users==True:
         user_one=User.objects.get(username=username)
         user_one.backend='django.contrib.auth.backends.ModelBackend'
-        login(request,user_one)
+        login(request)
         return "login_success"
     else:
         user=User.objects.create_user(username=username,email=email,password=settings.SECRET_KEY)
         user_one=User.objects.get(username=username)
         user_one.backend='django.contrib.auth.backends.ModelBackend'
-        login(request,user_one)
+        login(request)
         return "login_success"

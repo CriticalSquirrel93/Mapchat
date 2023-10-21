@@ -121,7 +121,7 @@
 
 }*/
     </style>
-    <title>Bootstrap 4 Login/Register Form</title>
+    <title>Login</title>
 </head>
 <body>
     <div id="logreg-forms">
@@ -147,8 +147,9 @@
 
 
             <hr>
-            <!-- <p>Don't have an account!</p>  -->
-            <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button>
+            <p style="text-align:center">Reset Password</p>
+            <!-- <p>Don't have an account!</p>
+            <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button>-->
             </form>
 
             <form action="/reset/password/" class="form-reset">
@@ -165,7 +166,7 @@
                     <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span> </button>
                 </div>-->
 
-                <p style="text-align:center">OR</p>
+                <p style="text-align:center">Sign Up</p>
 
                 <input type="email" id="useremail" class="form-control" placeholder="Email address" required autofocus="">
                 <input type="password" id="userpass" class="form-control" placeholder="Password" required autofocus="">
@@ -263,7 +264,6 @@ $(()=>{
          console.log(error);
      })
   }
-  //================End Signup With Email and Password======================
 
   //==========================Sign in With Email and Password============================
 
@@ -294,8 +294,6 @@ $(()=>{
 
        })
    }
-  //======================Sign With Email and Password
-
 
    //===================Saving Login Details in My Server Using AJAX================
    function sendDatatoServerPhp(email,provider,token,username){
