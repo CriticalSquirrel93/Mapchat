@@ -65,29 +65,8 @@ def firebase_login_save(request):
         user=firebase_dict["users"]
         if len(user)>0:
             user_one=user[0]
-            """
-            if "phoneNumber" in user_one:
-                if user_one["phoneNumber"]==email:
-                    data=proceedToLogin(request,email, username, token, provider)
-                    return HttpResponse(data)
-                else:
-                    return HttpResponse("Invalid Login Request")
-            else:
-                print(email)
-                if email==user_one["email"]:
-                    provider1=user_one["providerUserInfo"][0]["providerId"]
-                    if user_one["emailVerified"]==1 or user_one["emailVerified"]==True or user_one["emailVerified"]=="True" or provider1=="facebook.com":
-                        data=proceedToLogin(request,email,username,token,provider)
-                        return HttpResponse(data)
-                    else:
-                        return HttpResponse("Please Verify Your Email to Get Login")
-                else:
-                    return HttpResponse("Unknown Email User")
-            """
-            print(email)
             if email==user_one["email"]:
-                provider1=user_one["providerUserInfo"][0]["providerId"]
-                if user_one["emailVerified"]==1 or user_one["emailVerified"]==True or user_one["emailVerified"]=="True" or provider1=="facebook.com":
+                if user_one["emailVerified"]==1 or user_one["emailVerified"]==True or user_one["emailVerified"]=="True":
                     data=proceedToLogin(request,email,username,token,provider)
                     return HttpResponse(data)
                 else:
