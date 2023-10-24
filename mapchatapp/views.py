@@ -42,6 +42,9 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+def home(request):
+    return render(request, 'home.html')
+
 def LoginUser(request):
     if request.user==None or request.user =="" or request.user.username=="":
         return render(request, "login.html")
