@@ -16,15 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from mapchatapp import views
-from authentication import view
+
+from mapchatapp import views as frontend
+from authentication import views as auth
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
+    path('', frontend.index, name='index'),
+    path('home', frontend.home, name='home'),
 
-    path('home', views.home, name='home'),
-
-    path('login', view.login),
-    path('firebase_login_save', view.firebase_login_save),
+    path('login', auth.login),
+    path('firebase_login_save', auth.firebase_login_save),
 ]

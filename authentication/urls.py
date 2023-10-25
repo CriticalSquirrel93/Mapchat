@@ -1,7 +1,7 @@
 from django.urls import path
-from authentication import view
+from authentication import views
 
 urlpatterns = [
-    path('login', view.login),
-    path('firebase_login_save', view.firebase_login_save),
+    path('login', views.login),
+    path('firebase_login_save', views.firebase_login_save),
 ]
