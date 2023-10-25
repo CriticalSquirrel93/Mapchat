@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from mapchatapp import views
+from authentication import view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +25,6 @@ urlpatterns = [
 
     path('home', views.home, name='home'),
 
-    path('login', views.login),
-    path('firebase_login_save', views.firebase_login_save),
+    path('login', view.login),
+    path('firebase_login_save', view.firebase_login_save),
 ]
