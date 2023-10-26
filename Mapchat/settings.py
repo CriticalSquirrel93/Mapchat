@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mapchatapp',
+    'authentication.apps.AuthenticationConfig',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Firebase Config
+
+FIREBASECONFIG = {
+
+    "apiKey": "AIzaSyCwzsTIBBd48KlI1IG7hjSuiTQqshaBmV4",
+    "authDomain": "mapchat-ef869.firebaseapp.com",
+    "databaseURL": "https://mapchat-ef869-default-rtdb.firebaseio.com",
+    "projectId": "mapchat-ef869",
+    "storageBucket": "mapchat-ef869.appspot.com",
+    "messagingSenderId": "233501723438",
+    "appId": "1:233501723438:web:5b23fa135663362db808bf",
+    "measurementId": "G-7XG223B24F"
+}
