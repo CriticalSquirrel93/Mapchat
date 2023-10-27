@@ -15,5 +15,6 @@ def index(request):
 def home(request):
     return render(request, 'home.html')
 
+@login_required(login_url="/login")
 def settings(request):
     return render(request, 'settings.html')
