@@ -32,11 +32,10 @@ def firebase_login_save(request):
     firebase_dict=json.loads(firebase_responese)
 
     if "users" in firebase_dict:
-        #email node is busted
-        database.child('Data').child('Users').set({'email':{'email': email,
-                                                          'username': username,
-                                                          'settings': 'Default'}})
         user=firebase_dict['users']
+        #print(user[0]['localId'])
+        database.child('Data').child('Users').set({user[0]['localId']:{'email': email,
+                                                  'username': username,}})
         if len(user)>0:
             user_one=user[0]
             if email==user_one["email"]:

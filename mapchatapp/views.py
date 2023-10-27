@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-import pyrebase
+#import pyrebase
 
 # Create your views here.
 
