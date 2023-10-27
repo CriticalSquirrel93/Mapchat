@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mapchatapp',
     'authentication.apps.AuthenticationConfig',
+    'feed',
+    'chat',
+
 ]
 
 MIDDLEWARE = [
