@@ -111,7 +111,7 @@
             <br>
 
     </div>
-    <script>
+<script>
 function toggleResetPswd(e){
     e.preventDefault();
     $('#logreg-forms .form-signin').toggle() // display:block or none
@@ -214,7 +214,7 @@ $(()=>{
             var provider="email";
             var email=loginemail.value;
             if(token!=null && token!=undefined && token!=""){
-            sendDatatoServerPhp(email,provider,token,email);
+            sendDatatoServer(email,provider,token,email);
             }
        })
        .catch(function(error){
@@ -226,7 +226,7 @@ $(()=>{
    }
 
    // Save LogIn Data
-   function sendDatatoServerPhp(email,provider,token,username){
+   function sendDatatoServer(email,provider,token,username){
 
         var xhr = new XMLHttpRequest();
 

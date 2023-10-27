@@ -6,6 +6,8 @@ from Mapchat import settings
 from requests import request
 import pyrebase
 import json
+#from django.contrib.auth import login, logout, authenticate
+#from django.contrib.auth.models import User, Group
 
 # Here we are doing firebase authentication
 firebase = pyrebase.initialize_app(settings.FIREBASECONFIG)
