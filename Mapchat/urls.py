@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from mapchatapp import views as frontend
 from authentication import views as auth
@@ -25,7 +25,8 @@ urlpatterns = [
     path('', frontend.index, name='index'),
     path('home', frontend.home, name='home'),
     path('settings', frontend.settings, name='settings'),
+    path('', include('django.contrib.auth.urls')),
 
-    path('login', auth.login),
+    path('login', auth.login_firebase),
     path('firebase_login_save', auth.firebase_login_save),
 ]

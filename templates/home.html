@@ -33,7 +33,7 @@
                         <a class="nav-link text-white" href="/settings">Settings</a>
                     </li>
                     <li class="nav-item">
-                        <!--<a class="nav-link text-white" href="/login">Join</a> Switch for log out-->
+                        <a class="nav-link text-white" href="/logout">Logout</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#contact">Contact</a>
@@ -44,7 +44,7 @@
     </header>
 
 <body>
-    <h1>Hello {{user.username}}</h1>
+    <h1>Hello {{ user.get_username }}</h1>
     <button class="btn btn-success btn-block" id="btn" type="button"><i class="fas fa-sign-in-alt"></i> {{user.username}}</Button></button>
 </body>
 

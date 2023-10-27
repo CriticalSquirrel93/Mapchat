@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mapchatapp',
     'authentication.apps.AuthenticationConfig',
+    'feed',
+    'chat',
 
 ]
 
@@ -125,6 +127,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGOUT_REDIRECT_URL = '/login'
 
 # Firebase Config
 

@@ -2,12 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
+from django.contrib.auth import login, logout
 from Mapchat import settings
 from requests import request
 import pyrebase
 import json
 #from django.contrib.auth import login, logout, authenticate
-#from django.contrib.auth.models import User, Group
 
 # Here we are doing firebase authentication
 firebase = pyrebase.initialize_app(settings.FIREBASECONFIG)
@@ -19,9 +19,9 @@ def LoginUser(request):
         return render(request, "login.html")
     else:
         return HttpResponseRedirect("")
-
-def login(request):
-    return render(request, "login.html")
+    
+def login_firebase(request):
+    return render(request,"login.html")
 
 @csrf_exempt
 def firebase_login_save(request):
@@ -42,7 +42,7 @@ def firebase_login_save(request):
                     data=proceedToLogin(request,email,username,token,provider)
                     return HttpResponse(data)
                 else:
-                    return HttpResponse("Please Verify Your Email to Get Login")
+                    return HttpResponse("Please Verify Your Email to Login")
             else:
                 return HttpResponse("Unknown Email User")
         else:
@@ -59,7 +59,6 @@ def loadDatafromFirebaseApi(token):
     }
 
     response = request("POST", url, headers=headers, data=payload)
-
     return response.text
 
 def proceedToLogin(request,email,username,token,provider):
@@ -68,11 +67,16 @@ def proceedToLogin(request,email,username,token,provider):
     if users==True:
         user_one=User.objects.get(username=username)
         user_one.backend='django.contrib.auth.backends.ModelBackend'
-        login(request)
+        login(request, user_one)
         return "login_success"
     else:
         user=User.objects.create_user(username=username,email=email,password=settings.SECRET_KEY)
         user_one=User.objects.get(username=username)
         user_one.backend='django.contrib.auth.backends.ModelBackend'
-        login(request)
+        login(request, user_one)
         return "login_success"
+    
+def LogoutUser(request):
+    logout(request)
+    request.user=None
+    return HttpResponseRedirect("")
