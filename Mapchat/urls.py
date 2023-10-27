@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', frontend.index, name='index'),
     path('home', frontend.home, name='home'),
+    path('settings', frontend.settings, name='settings'),
 
     path('login', auth.login),
     path('firebase_login_save', auth.firebase_login_save),
