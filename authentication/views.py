@@ -2,12 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
-from django.contrib.auth import login, logout
+from django.contrib.auth import login
 from Mapchat import settings
 from requests import request
 import pyrebase
 import json
-#from django.contrib.auth import login, logout, authenticate
 
 # Here we are doing firebase authentication
 firebase = pyrebase.initialize_app(settings.FIREBASECONFIG)
@@ -32,9 +31,12 @@ def firebase_login_save(request):
     firebase_responese=loadDatafromFirebaseApi(token)
     firebase_dict=json.loads(firebase_responese)
 
-
     if "users" in firebase_dict:
-        user=firebase_dict["users"]
+        #email node is busted
+        database.child('Data').child('Users').set({'email':{'email': email,
+                                                          'username': username,
+                                                          'settings': 'Default'}})
+        user=firebase_dict['users']
         if len(user)>0:
             user_one=user[0]
             if email==user_one["email"]:
@@ -75,8 +77,3 @@ def proceedToLogin(request,email,username,token,provider):
         user_one.backend='django.contrib.auth.backends.ModelBackend'
         login(request, user_one)
         return "login_success"
-    
-def LogoutUser(request):
-    logout(request)
-    request.user=None
-    return HttpResponseRedirect("")
