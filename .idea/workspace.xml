@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38339443-aee4-40f3-8876-06a4c4c53e91" name="Changes" comment="making inital directory for real time chat / feed and storage">
-      <change afterPath="$PROJECT_DIR$/feed/templates/feed/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mapchat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mapchat/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feed/templates/feed/feed.html" beforeDir="false" afterPath="$PROJECT_DIR$/feed/templates/feed/feed.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feed/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/feed/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +128,7 @@
       <workItem from="1698167988957" duration="2314000" />
       <workItem from="1698284330471" duration="1427000" />
       <workItem from="1698375872526" duration="716000" />
-      <workItem from="1698376847339" duration="9980000" />
+      <workItem from="1698376847339" duration="11011000" />
     </task>
     <task id="LOCAL-00001" summary="making inital directory for real time chat / feed and storage">
       <option name="closed" value="true" />
