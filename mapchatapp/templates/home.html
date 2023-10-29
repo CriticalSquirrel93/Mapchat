@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+{% block body_content %}
+    <section id="home" class="text-center py-5">
+        <div class="container">
+            <h1>Hello {{ user.get_username }}</h1>
+            <button class="btn btn-success btn-block" id="btn" type="button">
+                <i class="fas fa-sign-in-alt"></i> {{user.username}}</Button>
+            </button>
+        </div>
+    </section>
+{% endblock %}

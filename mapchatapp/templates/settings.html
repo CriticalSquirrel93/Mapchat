@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %} Settings {% endblock %}
+
+{% block body_content %}
+    {% load static %}
+        <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+        <section id="contact" class="contact text-center py-5">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <p>If you have any questions or feedback, feel free to reach out to us.</p>
+                <a href="mailto:contact@mapchatapp.com" class="btn btn-primary">Email Us</a>
+            </div>
+        </section>
+{% endblock %}

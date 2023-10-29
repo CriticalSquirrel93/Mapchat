@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 #import pyrebase
 
+
 # Create your views here.
 
 # Remember the code we copied from Firebase.
@@ -9,11 +10,13 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     # accessing our firebase data and storing it in a variable
-    return render(request, 'index.html')
+    return render(request, 'frontpage.html')
+
 
 @login_required(login_url="/login")
 def home(request):
     return render(request, 'home.html')
+
 
 @login_required(login_url="/login")
 def settings(request):
