@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="38339443-aee4-40f3-8876-06a4c4c53e91" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Mapchat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Mapchat.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="38339443-aee4-40f3-8876-06a4c4c53e91" name="Changes" comment="making inital directory for real time chat / feed and storage">
+      <change afterPath="$PROJECT_DIR$/feed/templates/feed/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mapchat/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mapchat/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mapchat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mapchat/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feed/templates/feed/feed.html" beforeDir="false" afterPath="$PROJECT_DIR$/feed/templates/feed/feed.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feed/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/feed/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +25,7 @@
         <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -82,10 +84,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/feed/templates/feed" />
+      <recent name="$PROJECT_DIR$/feed/templates" />
       <recent name="D:\Users\davis\PycharmProjects\Mapchat\mapchatapp" />
       <recent name="D:\Users\davis\PycharmProjects\Mapchat\static\pages" />
       <recent name="D:\Users\davis\PycharmProjects\Mapchat\static" />
-      <recent name="D:\Users\davis\PycharmProjects\Mapchat" />
     </key>
   </component>
   <component name="RunManager">
@@ -126,8 +129,19 @@
       <workItem from="1698009061048" duration="569000" />
       <workItem from="1698009813115" duration="3349000" />
       <workItem from="1698167988957" duration="2314000" />
-      <workItem from="1698284330471" duration="722000" />
+      <workItem from="1698284330471" duration="1427000" />
+      <workItem from="1698375872526" duration="716000" />
+      <workItem from="1698376847339" duration="9980000" />
     </task>
+    <task id="LOCAL-00001" summary="making inital directory for real time chat / feed and storage">
+      <option name="closed" value="true" />
+      <created>1698375114974</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1698375114974</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,5 +157,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="making inital directory for real time chat / feed and storage" />
+    <option name="LAST_COMMIT_MESSAGE" value="making inital directory for real time chat / feed and storage" />
   </component>
 </project>

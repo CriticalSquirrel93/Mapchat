@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 from mapchatapp import views as frontend
 from authentication import views as auth
-from chat import views as chat
+from feed import views as feed
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +31,5 @@ urlpatterns = [
 
     path('login', auth.login_firebase),
     path('firebase_login_save', auth.firebase_login_save),
-
-    path('chat', chat.dmchat),
+    path('feed',feed.feed),
 ]
