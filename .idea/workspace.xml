@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="38339443-aee4-40f3-8876-06a4c4c53e91" name="Changes" comment="making inital directory for real time chat / feed and storage">
+    <list default="true" id="38339443-aee4-40f3-8876-06a4c4c53e91" name="Changes" comment="Include chat application">
+      <change afterPath="$PROJECT_DIR$/chat/templates/chat/dmchat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Mapchat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Mapchat.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feed/templates/feed/feed.html" beforeDir="false" afterPath="$PROJECT_DIR$/feed/templates/feed/feed.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mapchat/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mapchat/asgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mapchat/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mapchat/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,9 +23,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -69,7 +73,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/user/PycharmProjects/Mapchat&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/nixtr/PycharmProjects/Mapchat&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -81,11 +85,10 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/feed/templates/feed" />
-      <recent name="$PROJECT_DIR$/feed/templates" />
       <recent name="D:\Users\davis\PycharmProjects\Mapchat\mapchatapp" />
       <recent name="D:\Users\davis\PycharmProjects\Mapchat\static\pages" />
       <recent name="D:\Users\davis\PycharmProjects\Mapchat\static" />
+      <recent name="D:\Users\davis\PycharmProjects\Mapchat" />
     </key>
   </component>
   <component name="RunManager">
@@ -95,6 +98,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="Mapchat.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -126,17 +130,18 @@
       <workItem from="1698009061048" duration="569000" />
       <workItem from="1698009813115" duration="3349000" />
       <workItem from="1698167988957" duration="2314000" />
-      <workItem from="1698284330471" duration="1427000" />
-      <workItem from="1698375872526" duration="716000" />
-      <workItem from="1698376847339" duration="11011000" />
+      <workItem from="1698194833079" duration="819000" />
+      <workItem from="1698195806406" duration="1846000" />
+      <workItem from="1698259263988" duration="1418000" />
+      <workItem from="1698375611615" duration="11700000" />
     </task>
-    <task id="LOCAL-00001" summary="making inital directory for real time chat / feed and storage">
+    <task id="LOCAL-00001" summary="Include chat application">
       <option name="closed" value="true" />
-      <created>1698375114974</created>
+      <created>1698375997960</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1698375114974</updated>
+      <updated>1698375997960</updated>
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
@@ -156,7 +161,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="making inital directory for real time chat / feed and storage" />
-    <option name="LAST_COMMIT_MESSAGE" value="making inital directory for real time chat / feed and storage" />
+    <MESSAGE value="Include chat application" />
+    <option name="LAST_COMMIT_MESSAGE" value="Include chat application" />
   </component>
 </project>
