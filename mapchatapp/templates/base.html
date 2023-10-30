@@ -14,10 +14,38 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    {% include 'header.html' %}
+    {% block header_content %}
+    	<header class="bg-primary text-white">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-geo d-inline-block align-top"></i>
+                <!--<img src="logo.png" alt="Mapchat Logo" width="30" height="30" class="bi bi-geo d-inline-block align-top">-->
+                Mapchat
+            </a>
+            <!--Navigation Bar-->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/login">Join</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    {% endblock %}
     {% block body_content %}
         <!-- Begin Body Content -->
     {% endblock %}
-    {% include 'footer.html' %}
+    {% block footer_content %}
+        <footer class="text-center py-3 bg-dark text-white">
+            <p>&copy; 2023 Mapchat. All rights reserved.</p>
+        </footer>
+    {% endblock %}
 </body>
 </html>
