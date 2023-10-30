@@ -33,13 +33,12 @@ def firebase_login_save(request):
 
     if "users" in firebase_dict:
         user=firebase_dict['users']
-        #print(user[0]['localId'])
-        database.child('Data').child('Users').set({user[0]['localId']:{'email': email,
-                                                  'username': username,}})
+        database.child('Data').child('Users').child(user[0]['localId']).set({'email': email,
+                                                  'username': username,})
         if len(user)>0:
             user_one=user[0]
             if email==user_one["email"]:
-                if user_one["emailVerified"]==1 or user_one["emailVerified"]==True or user_one["emailVerified"]=="True":
+                if user_one["emailVerified"]==1:
                     data=proceedToLogin(request,email,username,token,provider)
                     return HttpResponse(data)
                 else:

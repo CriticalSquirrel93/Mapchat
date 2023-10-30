@@ -237,11 +237,15 @@ $(()=>{
                 alert("Login Successfull");
                 location='/home';
             }
-            else if(this.responseText=="Please Verify Your Email to Get Login"){
+            else if(this.responseText=="Please Verify Your Email to Login"){
                 alert("Please Verify Your Email to Login")
+            }
+            else if(this.responseText=="INVALID_LOGIN_CREDENTIALS"){
+                alert("Email and/or Password is Incorrect")
             }
             else{
                 alert("Error in Login");
+                //error for password, username
             }
         }
         });
