@@ -5,8 +5,9 @@
         <div class="container">
             <h1>Hello {{ user.get_username }}</h1>
             <button class="btn btn-success btn-block" id="btn" type="button">
-                <i class="fas fa-sign-in-alt"></i> {{user.username}}</Button>
-            </button>
+                <i class="fas fa-sign-in-alt"></i>
+                {{ user.username }}
+            </Button>
             <a class="nav-link text-black" href="/logout">Logout</a>
         </div>
     </section>
