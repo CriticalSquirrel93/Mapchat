@@ -2,5 +2,5 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def dmchat(request):
-    return render(request, 'chat/dmchat.html')
+def chat(request):
+    return render(request, 'chat/chat.html')
