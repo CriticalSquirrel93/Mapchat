@@ -31,8 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    #'daphne',
-    #'channels',
+    'daphne',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 
 ]
 
-#ASGI_APPLICATION = 'Mapchat.asgi.application'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,6 +77,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Mapchat.wsgi.application'
+
+
 
 
 # Database
@@ -145,4 +147,15 @@ FIREBASECONFIG = {
     "messagingSenderId": "233501723438",
     "appId": "1:233501723438:web:5b23fa135663362db808bf",
     "measurementId": "G-7XG223B24F"
+}
+
+
+ASGI_APPLICATION = 'Mapchat.asgi.application'
+CHANNEL_LAYERS = {
+    "default":{
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1",6379)],
+        },
+    },
 }

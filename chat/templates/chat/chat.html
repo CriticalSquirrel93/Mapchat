@@ -3,28 +3,30 @@
 {% block title %}Chat{% endblock %}
 
 {% block body_content %}
-    <header class="bg-primary text-white">
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="/">
-                <i class="bi bi-geo d-inline-block align-top"></i>
-                <!--<img src="logo.png" alt="Mapchat Logo" width="30" height="30" class="bi bi-geo d-inline-block align-top">-->
-                Mapchat
-            </a>
-            <!--Navigation Bar-->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-white">Home</a>
-                    </li>
+    <section>
+    <p>Your chat log with ___</p>
+    </section>
+    <section>
+      <div class="lg:w-2/4 mt-6 mx-4 lg:mx-auto p-4 bg-green-200 rounded-xl">
+        <form method="post" action="." class="flex">
+            <input type="text" name="content" class="flex-1 mr-3" placeholder="Your message..." id="chat-message-input">
 
-                </ul>
-            </div>
-        </nav>
-    </header>
+            <button class="px-5 py-3 rounded-xl text-white bg-teal-600 hover:bg-teal-700" id="chat-message-submit">
+                Submit
+            </button>
+            <script type="text/javascript">
+                let url = `ws://'${window.location.host}/ws/socket-server/`
+
+                const chatSocket = new WebSocket(url)
+
+                chatSocket.onmessage = function(e){
+                    let data = JSON.parse(e.data)
+                    console.log('Data,data')
+                }
+            </script>
+        </form>
+    </div>
+
+
+    </section>
 {% endblock %}
-<body>
-    <nav>
-        <a href="/home">Home</a>
-    </nav>
-</body>
-</html>

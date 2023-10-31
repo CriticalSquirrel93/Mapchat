@@ -33,5 +33,7 @@ urlpatterns = [
     path('login', auth.login_firebase),
     path('firebase_login_save', auth.firebase_login_save),
     path('feed', feed.feed),
-    path('chat', chat.chat)
+    #path('chat', chat.chat)
+    path("chat/", include("chat.urls")),
+
 ]
