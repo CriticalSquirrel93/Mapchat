@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+{% block body_content %}
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -94,10 +93,9 @@
 
             </form>
 
-            <form action="/reset/password/" class="form-reset">
+            <form class="form-reset" accept="#">
                 <input type="email" id="resetEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-                <button class="btn btn-primary btn-block" type="submit">Reset Password</button>
-                <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Back</a>
+                <button class="btn btn-primary btn-block" id="resetbtn" type="button">Reset Password</button>
             </form>
 
                 <p style="text-align:center">Sign Up</p>
@@ -106,7 +104,6 @@
                 <input type="password" id="userpass" class="form-control" placeholder="Password" required autofocus="">
 
                 <button class="btn btn-primary btn-block" type="button" id="signupbtn"><i class="fas fa-user-plus"></i> Sign Up</button>
-                <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
             </form>
             <br>
 
@@ -158,10 +155,28 @@ $(()=>{
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 
+  var resetbtn=document.getElementById("resetbtn");
+  var resetEmail=document.getElementById("resetEmail");
+
+  // Reset
+  resetbtn.onclick=function(){
+      resetbtn.disabled=true;
+      resetbtn.textContent="Password Reset Sent";
+      firebase.auth().sendPasswordResetEmail(resetEmail.value).then(function(response){
+            console.log(response);
+      })
+      .catch(function(error){
+        resetbtn.disabled=false;
+        resetbtn.textContent="Reset Password";
+          console.log(error);
+      })
+
+
+  };
+
   var signupbtn=document.getElementById("signupbtn");
   var emailsignup=document.getElementById("useremail");
   var passswordsignup=document.getElementById("userpass");
-
 
   // SignUp
   signupbtn.onclick=function(){
@@ -264,3 +279,4 @@ $(()=>{
     https://www.youtube.com/@codefirstwithhala
     https://www.techwithtim.net
 -->
+{% endblock %}
