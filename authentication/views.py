@@ -1,3 +1,11 @@
+"""
+    Credit
+    https://t.me/supercoders
+    https://pythonworld.io/blogs/how-to-implement-firebase-authentication-in-django-and-dango-rest-framework
+    https://www.youtube.com/@codefirstwithhala
+    https://www.techwithtim.net
+"""
+
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt

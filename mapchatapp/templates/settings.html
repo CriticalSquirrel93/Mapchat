@@ -1,68 +1,50 @@
 {% extends 'base.html' %}
 {% block title %} Settings {% endblock %}
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
-/* The switch - the box around the slider */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
+
+  input[type="checkbox"].toggle{
     opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* The slider */
-  .slider {
     position: absolute;
+    left: -9000px;
+    top: -9000px;
+  }
+
+  input[type="checkbox"].toggle + label{
+    position: relative;
+    display: flex;
+    align-items: center;
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
   }
-  
-  .slider:before {
-    position: absolute;
+
+  input[type="checkbox"].toggle:focus + label::before{
+    outline: 1px solid hsl(0, 0%, 23%);
+  }
+
+  input[type="checkbox"].toggle + label::before{
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    width: 2em;
+    height: 1em;
+    background-color:  hsl(0, 0%, 85%);
+    border-radius: 1em;
+    margin-right: .25em;
+    transition: 200ms ease-in-out;
   }
-  
-  input:checked + .slider {
-    background-color: #2196F3;
+
+  input[type="checkbox"].toggle + label::after{
+    position: absolute;
+    left: .1em;
+    content: "";
+    width: .9em;
+    height: .9em;
+    background-color: hsl(0, 90%, 60%);
+    border-radius: 1em;
+    transition: 200ms ease-in-out;
   }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
+
+  input[type="checkbox"].toggle:checked + label::after{
+    transform: translateX(100%);
+    background-color: hsl(100, 70%, 60%);
   }
 </style>
 
@@ -72,30 +54,19 @@
     <div class="container">
         <h1>Settings</h1><br><br>
 
-        <label class="switch">
-          Chat by Location
-          <input type="checkbox">
-          <span class="slider"></span>
-        </label><br>
+          <input type="checkbox" id ="Location" class="toggle">
+          <label for="Location">Chat by Location</label><br>
 
-        <label class="switch">
-          Display Location
-          <input type="checkbox">
-          <span class="slider"></span>
-        </label><br>
+          <input type="checkbox" id ="Display" class="toggle">
+          <label for="Display">Display Location</label><br>
 
-        <label class="switch">
-          Buisness
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label><br>
+          <input type="checkbox" id ="Buisness" class="toggle">
+          <label for="Buisness">Buisness</label><br>
 
-        <label class="switch">
-          An "A" for a pizza?
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label><br>
-        <button class="btn btn-primary" id="btn" type="button">
+          <input type="checkbox" id ="A" class="toggle">
+          <label for="A">An "A" for a pizza?</label><br>
+
+        <button class="btn btn-primary" id="savebtn" type="button">
           Save Settings
     </div>
 </section>
@@ -110,4 +81,31 @@
                 <a class="nav-link text-black" href="/logout">Logout</a>
               </div>
         </section>
+
+<script>
+  // Firebase configuration
+  var firebaseConfig = {
+  apiKey: "AIzaSyCwzsTIBBd48KlI1IG7hjSuiTQqshaBmV4",
+  authDomain: "mapchat-ef869.firebaseapp.com",
+  databaseURL: "https://mapchat-ef869-default-rtdb.firebaseio.com",
+  projectId: "mapchat-ef869",
+  storageBucket: "mapchat-ef869.appspot.com",
+  messagingSenderId: "233501723438",
+  appId: "1:233501723438:web:5b23fa135663362db808bf",
+  measurementId: "G-7XG223B24F"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  //var savebtn=document.getElementById("savebtn");
+
+  //Save
+  savebtn.onclick=function(){
+    savebtn.disabled=ture;
+    savebtn.textContent="Settings Saved";
+
+  }
+
+</script>
 {% endblock %}
