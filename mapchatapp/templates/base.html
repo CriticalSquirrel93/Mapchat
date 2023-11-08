@@ -25,7 +25,7 @@
             <!--Navigation Bar-->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    {% if request.current_user.is_authenticated %}
+                    {% if user.is_authenticated %}
                     	<li class="nav-item">
                             <a class="nav-link text-white" href="/logout">Logout</a>
                         </li>
