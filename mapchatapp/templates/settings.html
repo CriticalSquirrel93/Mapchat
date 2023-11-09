@@ -9,7 +9,6 @@
   input[type="checkbox"].toggle{
     opacity: 0;
     position: absolute;
-    top: 1em;
     left: -9000px;
     top: -9000px;
   }
@@ -85,6 +84,11 @@
             </div>
         </section>
 
+<script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+
 <script>
   // Firebase configuration
   var firebaseConfig = {
@@ -101,13 +105,60 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 
-  var savebtn=document.getElementById("savebtn");
+  firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // User logged in already or has just logged in.
+    console.log(user.uid);
+  } else {
+    // User not logged in or has just logged out.
+  }
+  });
 
+  var savebtn=document.getElementById("savebtn");
+  let obj_l = {
+    a: false
+  }
+  let obj_d = {
+    a: false
+  }
+  let obj_b = {
+    a: false
+  }
+
+  check("Location", obj_l)
+  check("Display", obj_d)
+  check("Buisness", obj_b)
+
+  function check(val, vars){
+    let checkbox = document.getElementById(val)
+    checkbox.addEventListener("change", () => {
+      if ( checkbox.checked ) {
+        vars.a = true;
+        console.log(vars);
+      } else {
+        vars.a = false;
+        console.log(vars);
+      }
+  });
+
+  //loc, 'display': disp, 'buisness': buis
+  }
   //Save
   savebtn.onclick=function(){
-    savebtn.disabled=ture;
+    savebtn.disabled=true;
     savebtn.textContent="Settings Saved";
-
+    firebase.database().ref().child('Data').child('Users')
+    .child(firebase.auth().currentUser.uid).child('Settings')
+    .set({'location': obj_l.a, 'display': obj_d.a, 'buisness': obj_b.a})
+    .then(function(response){
+            console.log(response);
+            savebtn.disabled=false;
+      })
+      .catch(function(error){
+        savebtn.disabled=false;
+        savebtn.textContent="Failed to Save";
+          console.log(error);
+      })
   }
 
 </script>

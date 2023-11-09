@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
 from Mapchat import settings
 import pyrebase
 
@@ -25,3 +26,7 @@ def home(request):
 @login_required(login_url="/login")
 def settings(request):
     return render(request, 'settings.html')
+
+def setting_save(request):
+    print("hello\n")
+    return HttpResponseRedirect("")

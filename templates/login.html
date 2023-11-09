@@ -164,6 +164,7 @@ $(()=>{
       resetbtn.textContent="Password Reset Sent";
       firebase.auth().sendPasswordResetEmail(resetEmail.value).then(function(response){
             console.log(response);
+            resetbtn.disabled=false;
       })
       .catch(function(error){
         resetbtn.disabled=false;

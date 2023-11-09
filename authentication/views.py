@@ -41,8 +41,12 @@ def firebase_login_save(request):
 
     if "users" in firebase_dict:
         user=firebase_dict['users']
-        database.child('Data').child('Users').child(user[0]['localId']).set({'email': email,
-                                                  'username': username,})
+        database.child('Data').child('Users').child(user[0]['localId']).update({'email': email,
+                                                  'username': username})
+        if not database.child('Data').child('Users').child(user[0]['localId']).child('Settings').shallow().get().val():
+            database.child('Data').child('Users').child(user[0]['localId']).child('Settings').set({'buisness': 'false',
+                                                                                                   'dispaly': 'false',
+                                                                                                   'location': 'false'})
         if len(user)>0:
             user_one=user[0]
             if email==user_one["email"]:
