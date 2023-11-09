@@ -46,7 +46,8 @@ def firebase_login_save(request):
         if not database.child('Data').child('Users').child(user[0]['localId']).child('Settings').shallow().get().val():
             database.child('Data').child('Users').child(user[0]['localId']).child('Settings').set({'buisness': 'false',
                                                                                                    'dispaly': 'false',
-                                                                                                   'location': 'false'})
+                                                                                                   'location': 'false',
+                                                                                                   'dark': 'false'})
         if len(user)>0:
             user_one=user[0]
             if email==user_one["email"]:

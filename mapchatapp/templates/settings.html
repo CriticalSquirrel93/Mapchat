@@ -29,7 +29,7 @@
     content: "";
     width: 2em;
     height: 1em;
-    background-color:  hsl(0, 0%, 85%);
+    background-color:  hsl(0, 0%, 79%);
     border-radius: 1em;
     margin-right: .25em;
     transition: 200ms ease-in-out;
@@ -67,6 +67,9 @@
     <input type="checkbox" id="Buisness" class="toggle">
     <label for="Buisness">Buisness</label><br>
 
+    <input type="checkbox" id="Dark" class="toggle">
+    <label for="Dark">Dark Mode</label><br>
+
     <input type="checkbox" id="A" class="toggle">
     <label for="A">An "A" for a pizza?</label><br>
 
@@ -92,19 +95,18 @@
 <script>
   // Firebase configuration
   var firebaseConfig = {
-  apiKey: "AIzaSyCwzsTIBBd48KlI1IG7hjSuiTQqshaBmV4",
-  authDomain: "mapchat-ef869.firebaseapp.com",
-  databaseURL: "https://mapchat-ef869-default-rtdb.firebaseio.com",
-  projectId: "mapchat-ef869",
-  storageBucket: "mapchat-ef869.appspot.com",
-  messagingSenderId: "233501723438",
-  appId: "1:233501723438:web:5b23fa135663362db808bf",
-  measurementId: "G-7XG223B24F"
+    apiKey: "AIzaSyCwzsTIBBd48KlI1IG7hjSuiTQqshaBmV4",
+    authDomain: "mapchat-ef869.firebaseapp.com",
+    databaseURL: "https://mapchat-ef869-default-rtdb.firebaseio.com",
+    projectId: "mapchat-ef869",
+    storageBucket: "mapchat-ef869.appspot.com",
+    messagingSenderId: "233501723438",
+    appId: "1:233501723438:web:5b23fa135663362db808bf",
+    measurementId: "G-7XG223B24F"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
-
   firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     // User logged in already or has just logged in.
@@ -124,10 +126,14 @@
   let obj_b = {
     a: false
   }
+  let obj_dark = {
+    a: false
+  }
 
   check("Location", obj_l)
   check("Display", obj_d)
   check("Buisness", obj_b)
+  check("Dark", obj_dark)
 
   function check(val, vars){
     let checkbox = document.getElementById(val)
@@ -141,7 +147,6 @@
       }
   });
 
-  //loc, 'display': disp, 'buisness': buis
   }
   //Save
   savebtn.onclick=function(){
@@ -149,7 +154,8 @@
     savebtn.textContent="Settings Saved";
     firebase.database().ref().child('Data').child('Users')
     .child(firebase.auth().currentUser.uid).child('Settings')
-    .set({'location': obj_l.a, 'display': obj_d.a, 'buisness': obj_b.a})
+    .set({'location': obj_l.a, 'display': obj_d.a,
+    'buisness': obj_b.a, 'dark': obj_dark.a})
     .then(function(response){
             console.log(response);
             savebtn.disabled=false;

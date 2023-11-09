@@ -26,7 +26,3 @@ def home(request):
 @login_required(login_url="/login")
 def settings(request):
     return render(request, 'settings.html')
-
-def setting_save(request):
-    print("hello\n")
-    return HttpResponseRedirect("")

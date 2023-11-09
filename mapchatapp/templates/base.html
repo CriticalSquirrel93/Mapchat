@@ -26,21 +26,70 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
+                        <a class="nav-link text-white" href="/home">Home</a>
+                        <a class="nav-link text-white" href="/settings">Settings</a>
                     	<li class="nav-item">
                             <a class="nav-link text-white" href="/logout">Logout</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/login">Join</a>
+                            <a class="nav-link text-white" href="/login">Join/Login</a>
                         </li>
                     {% endif %}
                 </ul>
             </div>
         </nav>
     </header>
+
+    <style>
+        body{
+            background-color: white;
+            color: black;
+        }
+        .dark-mode{
+            background-color: black;
+            color: white;
+        }
+    </style>
+
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+    <script>
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyCwzsTIBBd48KlI1IG7hjSuiTQqshaBmV4",
+            authDomain: "mapchat-ef869.firebaseapp.com",
+            databaseURL: "https://mapchat-ef869-default-rtdb.firebaseio.com",
+            projectId: "mapchat-ef869",
+            storageBucket: "mapchat-ef869.appspot.com",
+            messagingSenderId: "233501723438",
+            appId: "1:233501723438:web:5b23fa135663362db808bf",
+            measurementId: "G-7XG223B24F"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            firebase.database().ref().child('Data').child('Users')
+            .child(user.uid).child('Settings').once('value').then(function(snapshot){
+                var d = snapshot.val().dark;
+                if ( d ){
+                    dark();
+                }
+            });
+        }
+        });
+        
+        function dark() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+        }
+    </script>
     {% endblock %}
     {% block body_content %}
-        <!-- Begin Body Content -->
     {% endblock %}
     {% block footer_content %}
         <footer class="text-center py-3 bg-dark text-white">
