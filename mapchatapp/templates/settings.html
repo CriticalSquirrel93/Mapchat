@@ -73,7 +73,8 @@
     <input type="checkbox" id="A" class="toggle">
     <label for="A">An "A" for a pizza?</label><br>
 
-    <button class="btn btn-primary" id="savebtn" type="button">Save Settings</button>
+    <button class="btn btn-primary" id="savebtn" 
+    type="button">Save Settings</button>
   </div>
 </section>
 
@@ -107,18 +108,9 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
-  firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    // User logged in already or has just logged in.
-    console.log(user.uid);
-  } else {
-    // User not logged in or has just logged out.
-  }
-  });
 
-  var savebtn=document.getElementById("savebtn");
   let obj_l = {
-    a: false
+  a: false
   }
   let obj_d = {
     a: false
@@ -129,6 +121,40 @@
   let obj_dark = {
     a: false
   }
+
+  firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    firebase.database().ref().child('Data').child('Users')
+      .child(user.uid).child('Settings').once('value').then(function(snapshot){
+          var dar = snapshot.val().dark;
+          var dis = snapshot.val().display;
+          var loc = snapshot.val().location;
+          var buis = snapshot.val().buisness;
+          if ( dar ){
+              mark("Dark");
+              obj_dark.a = true;
+          }
+          if ( dis ){
+              mark("Display");
+              obj_d.a = true;
+          }
+          if ( loc ){
+              mark("Location");
+              obj_l.a = true;
+          }
+          if ( buis ){
+              mark("Buisness");
+              obj_b.a = true;
+          }
+      });
+  }
+  });
+
+  function mark(v) {
+    document.getElementById(v).checked = true;
+  }
+
+  var savebtn=document.getElementById("savebtn");
 
   check("Location", obj_l)
   check("Display", obj_d)
@@ -154,11 +180,12 @@
     savebtn.textContent="Settings Saved";
     firebase.database().ref().child('Data').child('Users')
     .child(firebase.auth().currentUser.uid).child('Settings')
-    .set({'location': obj_l.a, 'display': obj_d.a,
+    .update({'location': obj_l.a, 'display': obj_d.a,
     'buisness': obj_b.a, 'dark': obj_dark.a})
     .then(function(response){
             console.log(response);
             savebtn.disabled=false;
+            savebtn.textContent="Reload to View Changes";
       })
       .catch(function(error){
         savebtn.disabled=false;
