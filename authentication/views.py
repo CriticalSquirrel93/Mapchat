@@ -34,10 +34,11 @@ def firebase_login_save(request):
     if "users" in firebase_dict:
         user=firebase_dict['users']
         # Setting user data upon initial login
-        database.child('Data').child('Users').child(user[0]['localId']).update({'email': email,'username': username})
+        if not database.child('Data').child('Users').child(user[0]['localId']).shallow().get().val():
+            database.child('Data').child('Users').child(user[0]['localId']).update({'email': email, 'username': username})
         if not database.child('Data').child('Users').child(user[0]['localId']).child('Settings').shallow().get().val():
             database.child('Data').child('Users').child(user[0]['localId']).child('Settings').set({'buisness': False,
-                                                                                                   'dispaly': False,
+                                                                                                   'display': False,
                                                                                                    'location': False,
                                                                                                    'dark': False})
         # Checking firebase data for t/f email verification

@@ -51,6 +51,13 @@
     transform: translateX(100%);
     background-color: hsl(100, 97%, 46%);
   }
+
+  #logreg-forms form {
+    width: 100%;
+    max-width: 410px;
+    padding: 15px;
+    margin: auto;
+  }
 </style>
 
 <section class="text-center py-5">
@@ -74,14 +81,16 @@
     <label for="A">An "A" for a pizza?</label><br>
 
     <button class="btn btn-primary" id="savebtn" 
-    type="button">Save Settings</button><br><!--<br><br><br>
-
-    <form class="form-reset" accept="#">
-      <input type="email" id="unamebtn" placeholder="Username" required="" autofocus=""><br><br>
-      <button class="btn btn-primary" id="unamebtn" type="button">Save Username</button>
-    </form>-->
+    type="button">Save Settings</button><br><br>
 
   </div>
+  <!--<div id="logreg-forms">
+    <p style="text-align:center">Change Username</p>
+    <form class="uname" accept="#">
+      <input type="email" id="uname" class="form-control" placeholder="Username" required="" autofocus=""><br><br>
+      <button class="btn btn-primary" id="unamebtn" type="button">Save Username</button>
+    </form>
+  </div>-->
 </section>
 
     {% load static %}
@@ -179,28 +188,39 @@
       })
   }
 
-  //var unamebtn=document.getElementById("unamebtn");
-
-  //Save username
-  //unamebtn.onclick=function(){
-  //  unamebtn.disabled=true;
-  //  unamebtn.textContent="d";
-  //  unamebtn.disabled=false;
-    //firebase.database().ref().child('Data').child('Users')
-    //.child(firebase.auth().currentUser.uid).child('Settings')
-    //.update({'location': obj_l.a, 'display': obj_d.a,
-    //'buisness': obj_b.a, 'dark': obj_dark.a})
-    //.then(function(response){
-    //        console.log(response);
-    //        savebtn.disabled=false;
-    //        savebtn.textContent="Username Saved";
-    //  })
-    //  .catch(function(error){
-    //    savebtn.disabled=false;
-    //    savebtn.textContent="Failed to Save";
-    //      console.log(error);
-    //  })
-  //}
+//  var unamebtn=document.getElementById("unamebtn");
+//  var uname=document.getElementById("uname");
+//
+//  //Save username
+//  unamebtn.onclick=function(){
+//    unamebtn.disabled=true;
+//    unamebtn.textContent="Checking Name";
+//    firebase.database().ref().child('Data')
+//    .orderByChild('Unames').equalTo(uname.value).once("value",snapshot => {
+//    if (snapshot.exists()){
+//      const userData = snapshot.val();
+//      console.log("exists!", userData);
+//    }else{console.log("BUMPKIS")}
+//    });
+//    if (!(firebase.database().ref().child('Data').child('Unames').child(uname.value))){
+//      firebase.database().ref().child('Data').child('Users')
+//      .child(firebase.auth().currentUser.uid).update({'username': uname.value})
+//      .then(function(response){
+//              console.log(response);
+//              unamebtn.disabled=false;
+//              //firebase.database().ref().child('Data').child('Unames').set({'a':'a'})
+//        })
+//        .catch(function(error){
+//          unamebtn.disabled=false;
+//          unamebtn.textContent="Failed to Save";
+//            console.log(error);
+//        })
+//    }
+//    else{
+//      alert("Username Taken")
+//    unamebtn.disabled=false;
+//    }
+//  }
 
 </script>
 {% endblock %}
