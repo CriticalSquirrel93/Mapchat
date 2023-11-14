@@ -94,29 +94,10 @@
             </div>
         </section>
 
-<script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
-
 <script>
-  // Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyCwzsTIBBd48KlI1IG7hjSuiTQqshaBmV4",
-    authDomain: "mapchat-ef869.firebaseapp.com",
-    databaseURL: "https://mapchat-ef869-default-rtdb.firebaseio.com",
-    projectId: "mapchat-ef869",
-    storageBucket: "mapchat-ef869.appspot.com",
-    messagingSenderId: "233501723438",
-    appId: "1:233501723438:web:5b23fa135663362db808bf",
-    measurementId: "G-7XG223B24F"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
 
   let obj_l = {
-  a: false
+    a: false
   }
   let obj_d = {
     a: false
@@ -172,10 +153,8 @@
     checkbox.addEventListener("change", () => {
       if ( checkbox.checked ) {
         vars.a = true;
-        console.log(vars);
       } else {
         vars.a = false;
-        console.log(vars);
       }
   });
 

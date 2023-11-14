@@ -16,17 +16,9 @@ from requests import request
 import pyrebase
 import json
 
-# Here we are doing firebase authentication
 firebase = pyrebase.initialize_app(settings.FIREBASECONFIG)
 auth = firebase.auth()
 database = firebase.database()
-
-#def LoginUser(request):
-#    if request.user==None or request.user =="" or request.user.username=="":
-#        print("PIE\n")
-#        return render(request, "login.html")
-#    else:
-#        return HttpResponseRedirect("")
     
 def login_firebase(request):
     return render(request,"login.html")
@@ -41,14 +33,14 @@ def firebase_login_save(request):
     firebase_dict=json.loads(firebase_responese)
     if "users" in firebase_dict:
         user=firebase_dict['users']
-        print(user)
+        # Setting user data upon initial login
         database.child('Data').child('Users').child(user[0]['localId']).update({'email': email,'username': username})
         if not database.child('Data').child('Users').child(user[0]['localId']).child('Settings').shallow().get().val():
             database.child('Data').child('Users').child(user[0]['localId']).child('Settings').set({'buisness': False,
                                                                                                    'dispaly': False,
                                                                                                    'location': False,
                                                                                                    'dark': False})
- #       if len(user)>0:
+        # Checking firebase data for t/f email verification
         user_one=user[0]
         if email==user_one["email"]:
             if user_one["emailVerified"]==1:
@@ -56,12 +48,6 @@ def firebase_login_save(request):
                 return HttpResponse(data)
             else:
                 return HttpResponse("Please Verify Your Email to Login")
- #           else:
- #               return HttpResponse("Unknown Email User")
- #       else:
- #           return HttpResponse("Invalid Request User Not Found")
- #   else:
- #       return HttpResponse("Bad Request")
 
 def loadDatafromFirebaseApi(token):
     url = "https://identitytoolkit.googleapis.com/v1/accounts:lookup"
@@ -76,7 +62,7 @@ def loadDatafromFirebaseApi(token):
 
 def proceedToLogin(request,email,username,token,provider):
     users=User.objects.filter(username=username).exists()
-
+    # Hand off login to django
     if users==True:
         user_one=User.objects.get(username=username)
         user_one.backend='django.contrib.auth.backends.ModelBackend'
