@@ -1,0 +1,12 @@
+{% block feed_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+            {% include 'post.html' %}
+                {% for post in posts %}
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -20,7 +20,7 @@ def index(request):
 
 @login_required(login_url="/login")
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'homepage.html')
 
 
 @login_required(login_url="/login")
