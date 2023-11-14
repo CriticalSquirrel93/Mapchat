@@ -82,30 +82,25 @@
     <div id="logreg-forms">
         <form class="form-signin" accept="#">
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
-
             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-
             <button class="btn btn-success btn-block" id="loginbtn" type="button"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+        </form>
 
-            <hr>
-            <p style="text-align:center">Reset Password</p>
+        <hr>
+        <p style="text-align:center">Reset Password</p>
+        <form class="form-reset" accept="#">
+            <input type="email" id="resetEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+            <button class="btn btn-primary btn-block" id="resetbtn" type="button">Reset Password</button>
+        </form>
 
-            </form>
-
-            <form class="form-reset" accept="#">
-                <input type="email" id="resetEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-                <button class="btn btn-primary btn-block" id="resetbtn" type="button">Reset Password</button>
-            </form>
-
-                <p style="text-align:center">Sign Up</p>
-
-                <input type="email" id="useremail" class="form-control" placeholder="Email address" required autofocus="">
-                <input type="password" id="userpass" class="form-control" placeholder="Password" required autofocus="">
-
-                <button class="btn btn-primary btn-block" type="button" id="signupbtn"><i class="fas fa-user-plus"></i> Sign Up</button>
-            </form>
-            <br>
+        <hr>
+        <p style="text-align:center">Sign Up</p>
+            <input type="email" id="useremail" class="form-control" placeholder="Email address" required autofocus="">
+            <input type="password" id="userpass" class="form-control" placeholder="Password" required autofocus="">
+            <button class="btn btn-primary btn-block" type="button" id="signupbtn"><i class="fas fa-user-plus"></i> Sign Up</button>
+        </form>
+        <br>
 
     </div>
 <script>
@@ -163,13 +158,19 @@ $(()=>{
       resetbtn.disabled=true;
       resetbtn.textContent="Password Reset Sent";
       firebase.auth().sendPasswordResetEmail(resetEmail.value).then(function(response){
-            console.log(response);
-            resetbtn.disabled=false;
+        console.log(response);
+        resetbtn.disabled=false;
+        alert("Password Reset Sent. If you did not recive it then please verify your email")
       })
       .catch(function(error){
         resetbtn.disabled=false;
         resetbtn.textContent="Reset Password";
-          console.log(error);
+        console.log(error);
+        var errorCode=error.code;
+           var errorMessage=error.message;
+           if (errorCode === 'auth/invalid-email'){
+            alert("Invalid Email")
+           }
       })
   };
 
@@ -183,29 +184,38 @@ $(()=>{
       signupbtn.textContent="Registering Your Account! Please Wait";
       firebase.auth().createUserWithEmailAndPassword(emailsignup.value,passswordsignup.value).then(function(response){
         sendingVerifyEmail(signupbtn);
-            console.log(response);
+        console.log(response);
       })
       .catch(function(error){
         signupbtn.disabled=false;
         signupbtn.textContent="Sign Up";
-          console.log(error);
+        console.log(error);
+        var errorCode=error.code;
+           var errorMessage=error.message;
+           if (errorCode === 'auth/internal-error'){
+            alert("Email and/or Password is Incorrect")
+           }
+           if (errorCode === 'auth/weak-password'){
+            alert("Password should be at least 6 characters")
+           }
+           if (errorCode === 'auth/invalid-email'){
+            alert("Invalid Email")
+           }
       })
-
-
   };
 
   function sendingVerifyEmail(button){
      firebase.auth().currentUser.sendEmailVerification().then(function(response){
-                signupbtn.disabled=false;
+        signupbtn.disabled=false;
         signupbtn.textContent="Verification Emailed";
 
         console.log(response);
      })
      .catch(function(error){
-                signupbtn.disabled=false;
+        signupbtn.disabled=false;
         signupbtn.textContent="Verification Emailed";
 
-         console.log(error);
+        console.log(error);
      })
   }
 
@@ -219,19 +229,30 @@ $(()=>{
     loginbtn.disabled=true;
     loginbtn.textContent="Logging In Please Wait..";
        firebase.auth().signInWithEmailAndPassword(loginemail.value,loginpassword.value).then(function(response){
-           console.log(response);
-           loginbtn.disabled=false;
-    loginbtn.textContent="Sign In"
+            console.log(response);
+            loginbtn.disabled=false;
+            loginbtn.textContent="Sign In"
             var userobj=response.user;
             var token=userobj.xa;
             var provider="email";
             var email=loginemail.value;
             if(token!=null && token!=undefined && token!=""){
-            sendDatatoServer(email,provider,token,email);
+                sendDatatoServer(email,provider,token,email);
             }
        })
        .catch(function(error){
            console.log(error);
+           var errorCode=error.code;
+           var errorMessage=error.message;
+           if (errorCode === 'auth/internal-error'){
+            alert("Email and/or Password is Incorrect")
+           }
+           if (errorCode === 'auth/too-many-requests'){
+            alert("Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.")
+           }
+           if (errorCode === 'auth/invalid-email'){
+            alert("Invalid Email")
+           }
            loginbtn.disabled=false;
         loginbtn.textContent="Sign In"
 
@@ -253,12 +274,8 @@ $(()=>{
             else if(this.responseText=="Please Verify Your Email to Login"){
                 alert("Please Verify Your Email to Login")
             }
-            else if(this.responseText=="INVALID_LOGIN_CREDENTIALS"){
-                alert("Email and/or Password is Incorrect")
-            }
             else{
                 alert("Error in Login");
-                //error for password, username
             }
         }
         });
