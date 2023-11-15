@@ -1,37 +1,43 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 export const Signup = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [notice, setNotice] = useState("");
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+    const { signup } = useAuth();
 
-    const signupWithUsernameAndPassword = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (password === confirmPassword) {
             try {
-                await createUserWithEmailAndPassword(auth, email, password);
+                setError("");
+                setLoading(true);
+                await signup(email, password);
                 navigate("/");
-            } catch {
-                setNotice("Sorry, something went wrong. Please try again.");
+            } catch (err) {
+                setError("Sorry, something went wrong. Please try again.");
+                console.log(err.message);
             }
         } else {
-            setNotice("Passwords don't match. Please try again.");
+            setError("Passwords don't match. Please try again.");
         }
+
+        setLoading(false);
     };
 
     return(
         <div className = "container">
             <div className = "row justify-content-center">
                 <form className = "col-md-4 mt-3 pt-3 pb-3">
-                    { "" !== notice &&
+                    { "" !== error &&
                         <div className = "alert alert-warning" role = "alert">
-                            { notice }
+                            { error }
                         </div>
                     }
                     <div className = "form-floating mb-3">
@@ -47,10 +53,10 @@ export const Signup = () => {
                         <label htmlFor = "confirmPassword" className = "form-label">Confirm Password</label>
                     </div>
                     <div className = "d-grid">
-                        <button type = "submit" className = "btn btn-primary pt-3 pb-3" onClick = {(e) => signupWithUsernameAndPassword(e)}>Signup</button>
+                        <button disabled = { loading } type = "submit" className = "btn btn-primary pt-3 pb-3" onClick = {(e) => handleSubmit(e)}>Signup</button>
                     </div>
                     <div className = "mt-3 text-center">
-                        <span>Go back to login? <Link to = "/">Click here.</Link></span>
+                        <span>Go back to login? <Link to = "/login">Click here.</Link></span>
                     </div>
                 </form>
             </div>

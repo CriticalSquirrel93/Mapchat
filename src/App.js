@@ -5,20 +5,19 @@ import { Layout } from "./components/Layout";
 import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
 import { Profile } from "./components/Profile";
-import {ResetPassword} from "./components/ResetPassword";
-import {Chat} from "./components/Chat";
+import { ResetPassword } from "./components/ResetPassword";
+import { Homepage } from "./components/Homepage";
+import { AuthProvider } from "./contexts/AuthContext";
+import { Chat } from "./components/Chat";
 
 function App() {
-
-    const CollectionPublic = () => {
-        return "Public Collection Content";
-    }
     return (
         <div className="App">
             <Router>
                 <Routes>
                     <Route path = "/" element = { <Layout /> }>
-                        <Route index element = { <Login /> } ></Route>
+                        <Route index element = { <Homepage /> } ></Route>
+                        <Route path = "/login" element = { <Login /> }></Route>
                         <Route path = "/reset" element = { <ResetPassword />} ></Route>
                         <Route path = "/signup" element = { <Signup /> } ></Route>
                         <Route path = "/profile" element = { <Profile /> } ></Route>
