@@ -197,26 +197,32 @@
     unamebtn.textContent="Checking Name";
     var uname=document.getElementById("uname").value;
     var uid=firebase.auth().currentUser.uid;
-    firebase.database().ref('Data/Unames/' + uname).on('value', snapshot => {
-      if (!(snapshot.exists())){
+    firebase.database().ref('Data/Unames/' + uname).once('value').then(function(snapshot){
+      if (snapshot.exists()){
+        alert("Username Taken");
+        unamebtn.disabled=false;
+      }
+      else{
+        firebase.database().ref('Data/Users/' + uid).once('value').then(function(snapshot){
+          var data = snapshot.val()
+          if (data.email == data.username){
+            console.log("same")
+          }
+        })
         firebase.database().ref().child('Data').child('Users')
         .child(uid).update({'username': uname, 'uname': true})
         .then(function(response){
                 unamebtn.disabled=false;
+                unamebtn.textContent="Saved";
                 firebase.database().ref().child('Data').child('Unames').child(uname).update({'UID' : uid})
-                return;
+                unamebtn.textContent="Saved";
           })
           .catch(function(error){
             unamebtn.disabled=false;
             unamebtn.textContent="Failed to Save";
               console.log(error);
           })
-      }
-      else{
-        console.log(snapshot.exists());
-        alert("Username Taken");
-        unamebtn.disabled=false;
-      }
+      }console.log(snapshot.exists());
     });
   }
 
