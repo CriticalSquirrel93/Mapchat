@@ -5,7 +5,8 @@ import { Layout } from "./components/Layout";
 import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
 import { Profile } from "./components/Profile";
-import { ResetPassword } from "./components/ResetPassword";
+import {ResetPassword} from "./components/ResetPassword";
+import {Chat} from "./components/Chat";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
                         <Route path = "/reset" element = { <ResetPassword />} ></Route>
                         <Route path = "/signup" element = { <Signup /> } ></Route>
                         <Route path = "/profile" element = { <Profile /> } ></Route>
+                        <Route path = "/chat" element = { <Chat /> }></Route>
                     </Route>
                 </Routes>
             </Router>
