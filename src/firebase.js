@@ -3,14 +3,16 @@ import { GoogleAuthProvider, getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAhY9njB8Vo7Zhj7WO2MMWoJ4Bymy2xtXQ",
-    authDomain: "mapchatjs.firebaseapp.com",
-    projectId: "mapchatjs",
-    storageBucket: "mapchatjs.appspot.com",
-    messagingSenderId: "590394273202",
-    appId: "1:590394273202:web:2772497ef045b4e96bc8ab",
-    measurementId: "G-65L4EK5GYD"
+    apiKey: "AIzaSyCRMRrrljsnlSomprrQp1v4CCBgmJ6MpYo",
+    authDomain: "djangodemo-b19ea.firebaseapp.com",
+    databaseURL: "https://djangodemo-b19ea-default-rtdb.firebaseio.com",
+    projectId: "djangodemo-b19ea",
+    storageBucket: "djangodemo-b19ea.appspot.com",
+    messagingSenderId: "322473729426",
+    appId: "1:322473729426:web:ec8f8a309f3aea4b90354b",
+    measurementId: "G-7JC5G7F1X8"
 };
+
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);

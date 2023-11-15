@@ -1,10 +1,10 @@
-import {Link, Navigate, Outlet} from "react-router-dom";
+import { Outlet} from "react-router-dom";
 import { auth } from "../firebase";
 import { useAuth } from "../contexts/AuthContext";
 
 export const Layout = () => {
 
-    const { currentUser, logout } = useAuth();
+    const { currentUser } = useAuth();
 
     auth.onAuthStateChanged((user) => {
         if (user !== null) {
@@ -13,6 +13,12 @@ export const Layout = () => {
             let photoURL = user.photoURL;
             let emailVerified = user.emailVerified;
             let uid = user.uid;
+
+            console.log(displayName);
+            console.log(email);
+            console.log(photoURL);
+            console.log(emailVerified);
+            console.log(uid);
         }
     });
 
@@ -28,13 +34,10 @@ export const Layout = () => {
                     <div className="collapse navbar-collapse" id="navbarText">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="/">Home</a>
+                                <a className="nav-link active" aria-current="page" href={ currentUser ? "/home" : "/" }>Home</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="">Features</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Contact</a>
+                                <a className="nav-link" href="/chat">Chat</a>
                             </li>
                             <li className = "nav-item">
                                 <a className = "nav-link" href = { currentUser ? "/profile" : "/login" }> { currentUser ? currentUser.email : "Login" } </a>

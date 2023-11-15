@@ -6,9 +6,10 @@ import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
 import { Profile } from "./components/Profile";
 import { ResetPassword } from "./components/ResetPassword";
-import { Homepage } from "./components/Homepage";
+import { Landing } from "./components/Landing";
 import { AuthProvider } from "./contexts/AuthContext";
 import { Chat } from "./components/Chat";
+import {Homepage} from "./components/Homepage";
 
 function App() {
     return (
@@ -17,7 +18,8 @@ function App() {
                 <AuthProvider>
                     <Routes>
                         <Route path = "/" element = { <Layout /> }>
-                            <Route index element = { <Homepage /> } ></Route>
+                            <Route index element = { <Landing /> } ></Route>
+                            <Route path = "/home" element = { <Homepage /> }></Route>
                             <Route path = "/login" element = { <Login /> }></Route>
                             <Route path = "/reset" element = { <ResetPassword />} ></Route>
                             <Route path = "/signup" element = { <Signup /> } ></Route>

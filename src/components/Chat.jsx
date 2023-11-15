@@ -23,7 +23,7 @@ export const Chat = () => {
 
 
         return () => unsubscribe();
-    }, [messagesRef]);
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -44,7 +44,7 @@ export const Chat = () => {
             <div className="messages">
                 {messages.map((message) => (
                     <div className="message" key={message.id}>
-                        <span className="user"> {message.user} </span>
+                        <span className="text-white-50 user"> {message.user} </span>
                         {message.text}
                     </div>
                     ))}
