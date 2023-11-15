@@ -5,7 +5,7 @@ import { Layout } from "./components/Layout";
 import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
 import { Profile } from "./components/Profile";
-import {ResetPassword} from "./components/ResetPassword";
+import { ResetPassword } from "./components/ResetPassword";
 
 function App() {
 

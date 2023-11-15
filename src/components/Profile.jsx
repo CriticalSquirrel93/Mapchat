@@ -5,6 +5,15 @@ import { signOut } from "firebase/auth";
 export const Profile = () => {
     const navigate = useNavigate();
     const user = auth.currentUser;
+
+    auth.onAuthStateChanged(function (user) {
+        if (user) {
+            // Do nothing
+        } else {
+            navigate("/");
+        }
+    });
+
     const logoutUser = async (e) => {
         e.preventDefault();
 
