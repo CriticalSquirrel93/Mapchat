@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import {Link, Navigate, Outlet} from "react-router-dom";
 import { auth } from "../firebase";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -37,7 +37,7 @@ export const Layout = () => {
                                 <a className="nav-link" href="#">Contact</a>
                             </li>
                             <li className = "nav-item">
-                                <a className = "nav-link"> { currentUser ? currentUser.email : <Link to = "./login">Login</Link> } </a>
+                                <a className = "nav-link" href = { currentUser ? "/profile" : "/login" }> { currentUser ? currentUser.email : "Login" } </a>
                             </li>
                         </ul>
                     </div>

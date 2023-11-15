@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { addDoc, collection, serverTimestamp, onSnapshot, query } from "firebase/firestore";
 import { auth, db } from "../firebase";
-import { useAuth } from "../contexts/AuthContext";
 import "../styles/Chat.css";
 
 export const Chat = () => {
-
 
     const [newMessage, setNewMessage] = useState("")
     const [messages, setMessages] = useState([]);
@@ -25,7 +23,7 @@ export const Chat = () => {
 
 
         return () => unsubscribe();
-    }, []);
+    }, [messagesRef]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,7 +32,7 @@ export const Chat = () => {
         await addDoc(messagesRef, {
             text: newMessage,
             createdAt: serverTimestamp(),
-            user: auth.currentUser.displayName,
+            user: auth.currentUser.email,
         });
     };
 
@@ -46,7 +44,7 @@ export const Chat = () => {
             <div className="messages">
                 {messages.map((message) => (
                     <div className="message" key={message.id}>
-                        <span className="user">{message.user} </span>
+                        <span className="user"> {message.user} </span>
                         {message.text}
                     </div>
                     ))}

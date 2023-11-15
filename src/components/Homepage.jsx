@@ -4,7 +4,7 @@ export function Homepage() {
             <div className = "container">
                 <section className="hero text-center py-5">
                     <div className="container">
-                        <h2>Discover Local Meetups with Mapchat</h2>
+                        <h2>Discover Local Meetups with MapChat</h2>
                         <p>Connect with people in your community, set up meetups, and explore your city like never
                             before.</p>
                         <a href="/login" className="btn btn-primary">Join Now</a>
