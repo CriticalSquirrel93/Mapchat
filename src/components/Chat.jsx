@@ -1,6 +1,7 @@
-import {useState, useRef, useEffect,} from 'react';
-import {addDoc, collection, serverTimestamp, onSnapshot, query, where} from "firebase/firestore";
-import {auth, db} from "../firebase";
+import { useState, useEffect } from 'react';
+import { addDoc, collection, serverTimestamp, onSnapshot, query } from "firebase/firestore";
+import { auth, db } from "../firebase";
+import { useAuth } from "../contexts/AuthContext";
 import "../styles/Chat.css";
 
 export const Chat = () => {
@@ -25,6 +26,7 @@ export const Chat = () => {
 
         return () => unsubscribe();
     }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (newMessage === "") return;
@@ -35,6 +37,7 @@ export const Chat = () => {
             user: auth.currentUser.displayName,
         });
     };
+
     return (
         <div className="chat-app">
             <div className="header">
@@ -58,7 +61,6 @@ export const Chat = () => {
                 <button type="submit" className="send-button">
                     Send
                 </button>
-
             </form>
         </div>
     );

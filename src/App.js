@@ -14,16 +14,18 @@ function App() {
     return (
         <div className="App">
             <Router>
-                <Routes>
-                    <Route path = "/" element = { <Layout /> }>
-                        <Route index element = { <Homepage /> } ></Route>
-                        <Route path = "/login" element = { <Login /> }></Route>
-                        <Route path = "/reset" element = { <ResetPassword />} ></Route>
-                        <Route path = "/signup" element = { <Signup /> } ></Route>
-                        <Route path = "/profile" element = { <Profile /> } ></Route>
-                        <Route path = "/chat" element = { <Chat /> }></Route>
-                    </Route>
-                </Routes>
+                <AuthProvider>
+                    <Routes>
+                        <Route path = "/" element = { <Layout /> }>
+                            <Route index element = { <Homepage /> } ></Route>
+                            <Route path = "/login" element = { <Login /> }></Route>
+                            <Route path = "/reset" element = { <ResetPassword />} ></Route>
+                            <Route path = "/signup" element = { <Signup /> } ></Route>
+                            <Route path = "/profile" element = { <Profile /> } ></Route>
+                            <Route path = "/chat" element = { <Chat /> }></Route>
+                        </Route>
+                    </Routes>
+                </AuthProvider>
             </Router>
         </div>
     );
