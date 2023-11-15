@@ -4,7 +4,6 @@ import { auth } from "../firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 
 export function ResetPassword() {
-    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [notice, setNotice] = useState("");
 
