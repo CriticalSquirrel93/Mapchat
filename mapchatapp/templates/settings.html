@@ -84,13 +84,13 @@
     type="button">Save Settings</button><br><br>
 
   </div>
-  <!--<div id="logreg-forms">
+  <div id="logreg-forms">
     <p style="text-align:center">Change Username</p>
     <form class="uname" accept="#">
       <input type="email" id="uname" class="form-control" placeholder="Username" required="" autofocus=""><br><br>
       <button class="btn btn-primary" id="unamebtn" type="button">Save Username</button>
     </form>
-  </div>-->
+  </div>
 </section>
 
     {% load static %}
@@ -188,39 +188,37 @@
       })
   }
 
-//  var unamebtn=document.getElementById("unamebtn");
-//  var uname=document.getElementById("uname");
-//
-//  //Save username
-//  unamebtn.onclick=function(){
-//    unamebtn.disabled=true;
-//    unamebtn.textContent="Checking Name";
-//    firebase.database().ref().child('Data')
-//    .orderByChild('Unames').equalTo(uname.value).once("value",snapshot => {
-//    if (snapshot.exists()){
-//      const userData = snapshot.val();
-//      console.log("exists!", userData);
-//    }else{console.log("BUMPKIS")}
-//    });
-//    if (!(firebase.database().ref().child('Data').child('Unames').child(uname.value))){
-//      firebase.database().ref().child('Data').child('Users')
-//      .child(firebase.auth().currentUser.uid).update({'username': uname.value})
-//      .then(function(response){
-//              console.log(response);
-//              unamebtn.disabled=false;
-//              //firebase.database().ref().child('Data').child('Unames').set({'a':'a'})
-//        })
-//        .catch(function(error){
-//          unamebtn.disabled=false;
-//          unamebtn.textContent="Failed to Save";
-//            console.log(error);
-//        })
-//    }
-//    else{
-//      alert("Username Taken")
-//    unamebtn.disabled=false;
-//    }
-//  }
+  var unamebtn=document.getElementById("unamebtn");
+  //var uname=document.getElementById("uname").value;
+
+  //Save username
+  unamebtn.onclick=function(){
+    unamebtn.disabled=true;
+    unamebtn.textContent="Checking Name";
+    var uname=document.getElementById("uname").value;
+    var uid=firebase.auth().currentUser.uid;
+    firebase.database().ref('Data/Unames/' + uname).on('value', snapshot => {
+      if (!(snapshot.exists())){
+        firebase.database().ref().child('Data').child('Users')
+        .child(uid).update({'username': uname, 'uname': true})
+        .then(function(response){
+                unamebtn.disabled=false;
+                firebase.database().ref().child('Data').child('Unames').child(uname).update({'UID' : uid})
+                return;
+          })
+          .catch(function(error){
+            unamebtn.disabled=false;
+            unamebtn.textContent="Failed to Save";
+              console.log(error);
+          })
+      }
+      else{
+        console.log(snapshot.exists());
+        alert("Username Taken");
+        unamebtn.disabled=false;
+      }
+    });
+  }
 
 </script>
 {% endblock %}
