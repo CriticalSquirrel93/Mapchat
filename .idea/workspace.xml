@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38339443-aee4-40f3-8876-06a4c4c53e91" name="Changes" comment="Include chat application">
-      <change afterPath="$PROJECT_DIR$/chat/consumers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat/routing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat/templates/chat/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat/templates/chat/room.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/Profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Mapchat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Mapchat.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mapchat/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mapchat/asgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mapchat/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mapchat/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mapchat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mapchat/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/templates/chat/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/chat/templates/chat/chat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/templates/chat/dmchat.html" beforeDir="false" afterPath="$PROJECT_DIR$/chat/templates/chat/dmchat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feed/templates/feed/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/feed/templates/feed/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,10 +23,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="HTML File" />
         <option value="Python Script" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -58,6 +51,9 @@
         <option name="url" value="https://github.com/CriticalSquirrel93/Mapchat.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -86,10 +82,19 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.rcb.reactComponents" value="false" />
+        <entry key="com.haulmont.rcb.reactInspector" value="false" />
+      </map>
+    </option>
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Users\davis\PycharmProjects\Mapchat\mapchatapp" />
@@ -143,6 +148,9 @@
       <workItem from="1698375611615" duration="11700000" />
       <workItem from="1698696933177" duration="1998000" />
       <workItem from="1698701823197" duration="11483000" />
+      <workItem from="1700102381183" duration="1071000" />
+      <workItem from="1700103511171" duration="131000" />
+      <workItem from="1700103979269" duration="393000" />
     </task>
     <task id="LOCAL-00001" summary="Include chat application">
       <option name="closed" value="true" />

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
+import "../styles/Profile.css";
 
 export const Profile = () => {
     const navigate = useNavigate();
