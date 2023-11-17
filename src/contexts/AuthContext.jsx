@@ -10,7 +10,7 @@ import {
 const AuthContext = React.createContext(undefined);
 
 export function useAuth() {
-    return useContext(AuthContext)
+    return useContext(AuthContext);
 }
 
 export function AuthProvider ({ children }) {
