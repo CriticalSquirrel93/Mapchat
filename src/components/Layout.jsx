@@ -7,19 +7,19 @@ export const Layout = () => {
     const { currentUser } = useAuth();
 
     auth.onAuthStateChanged((user) => {
-        if (user !== null) {
+        /**if (user !== null) {
             let displayName = user.displayName;
             let email = user.email;
             let photoURL = user.photoURL;
             let emailVerified = user.emailVerified;
             let uid = user.uid;
 
-            console.log(displayName);
-            console.log(email);
-            console.log(photoURL);
-            console.log(emailVerified);
-            console.log(uid);
-        }
+            //console.log(displayName);
+            //console.log(email);
+            //console.log(photoURL);
+            //console.log(emailVerified);
+            //console.log(uid);
+        }**/
     });
 
 
