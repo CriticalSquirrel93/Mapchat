@@ -6,6 +6,7 @@ import {
     signInWithEmailAndPassword,
     signOut
 } from "firebase/auth";
+import {getLocationData} from "./geocode";
 
 const AuthContext = React.createContext(undefined);
 
@@ -17,6 +18,7 @@ export function AuthProvider ({ children }) {
 
     const [currentUser, setCurrentUser] = useState(undefined);
     const [loading, setLoading] = useState(true);
+    const [zipcode, setZipcode] = useState(undefined);
 
     function signup(email, password) {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -42,6 +44,10 @@ export function AuthProvider ({ children }) {
         return currentUser.updatePassword(password);
     }
 
+    function getLocation() {
+        return getLocationData();
+    }
+
     useEffect(() => {
         return auth.onAuthStateChanged(user => {
             setCurrentUser(user);
@@ -55,8 +61,13 @@ export function AuthProvider ({ children }) {
         });
     }, []);
 
+    useEffect(() => {
+       setZipcode(getLocation());
+    })
+
     const value  = {
         currentUser,
+        zipcode,
         login,
         signup,
         logout,
