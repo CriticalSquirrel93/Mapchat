@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 export let getLocationData = () => {
-    const [locationData, setLocationData] = useState();
     let zip;
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -20,8 +19,7 @@ export let getLocationData = () => {
                         response.json()
                             .then(data => {
                                 console.log(data);
-                                setLocationData(data);
-                                zip = locationData.results[0].address_components[0].short_name
+                                zip = data.results[0].address_components[0].short_name;
                             });
                         }
                     )
@@ -40,5 +38,6 @@ export let getLocationData = () => {
     } else {
         alert("Sorry, Geolocation is not supported by your browser.");
     }
+    return (zip)
 
 }
