@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, rdb } from "../firebase";
+import { rdb } from "../firebase";
 import { ref, update, onValue, orderByChild, equalTo, get, query } from "firebase/database";
-import { signOut } from "firebase/auth";
 import "../styles/Profile.css";
 import { Checkbox } from "./Checkbox";
+import { useAuth } from "../hooks/useAuth";
 
 
 /**
@@ -14,7 +14,7 @@ import { Checkbox } from "./Checkbox";
 
  export const Profile = () => {
     const navigate = useNavigate();
-    const user = auth.currentUser;
+    const { user, logout } = useAuth();
 
     const [checked, setChecked] = useState(false);
     const [username, setUsername] = useState('');
@@ -47,13 +47,6 @@ import { Checkbox } from "./Checkbox";
         })
     }
 
-    // Example of a listener for if the user's auth state changes.
-    auth.onAuthStateChanged(function (user) {
-        if (user) {
-
-        }
-    });
-
     const handleUserOnChange = (e) => {
         setUsername(e.target.value);
     }
@@ -66,7 +59,7 @@ import { Checkbox } from "./Checkbox";
     const handleLogout = async (e) => {
         e.preventDefault();
 
-        await signOut(auth);
+        await logout();
         navigate("/login");
     }
 

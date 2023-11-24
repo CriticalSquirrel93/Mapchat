@@ -8,6 +8,7 @@ import {Signup} from "../Signup";
 import {Chat} from "../Chat";
 import React from "react";
 import Profile from "../Profile";
+import {NotFound} from "../NotFound";
 
 export const AuthenticatedApp = () => {
     return (
@@ -23,6 +24,7 @@ export const AuthenticatedApp = () => {
                             <Route path = "/signup" element = { <Signup /> } ></Route>
                             <Route path = "/profile" element = { <Profile /> } ></Route>
                             <Route path = "/chat" element = { <Chat /> }></Route>
+                            <Route path="*" element={ <NotFound />} />
                         </Route>
                     </Routes>
                 </Router>

@@ -2,12 +2,12 @@ import React from "react";
 import './App.css';
 import { AuthenticatedApp } from "./components/AppStates/AuthenticatedApp";
 import { UnauthenticatedApp } from "./components/AppStates/UnauthenticatedApp";
-import { useAuth } from "./contexts/AuthContext";
+import { useAuth } from "./hooks/useAuth";
 
 function App() {
-    const { currentUser } = useAuth();
+    const { user } = useAuth();
 
-    return currentUser ? <AuthenticatedApp/> : <UnauthenticatedApp/>;
+    return user ? <AuthenticatedApp/> : <UnauthenticatedApp/>;
 }
 
 export default App;
