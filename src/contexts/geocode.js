@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 export let getLocationData = () => {
     let zip;
     if (navigator.geolocation) {
@@ -20,6 +18,7 @@ export let getLocationData = () => {
                             .then(data => {
                                 console.log(data);
                                 zip = data.results[0].address_components[0].short_name;
+                                console.log(zip);
                             });
                         }
                     )

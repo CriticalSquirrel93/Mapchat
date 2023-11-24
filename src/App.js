@@ -1,36 +1,13 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
-import { Layout } from "./components/Layout";
-import { Login } from "./components/Login";
-import { Signup } from "./components/Signup";
-import { Profile } from "./components/Profile";
-import { ResetPassword } from "./components/ResetPassword";
-import { Landing } from "./components/Landing";
-import { AuthProvider } from "./contexts/AuthContext";
-import { Chat } from "./components/Chat";
-import {Homepage} from "./components/Homepage";
+import { AuthenticatedApp } from "./components/AppStates/AuthenticatedApp";
+import { UnauthenticatedApp } from "./components/AppStates/UnauthenticatedApp";
+import { useAuth } from "./contexts/AuthContext";
 
 function App() {
-    return (
-        <div className="App">
-            <Router>
-                <AuthProvider>
-                    <Routes>
-                        <Route path = "/" element = { <Layout /> }>
-                            <Route index element = { <Landing /> } ></Route>
-                            <Route path = "/home" element = { <Homepage /> }></Route>
-                            <Route path = "/login" element = { <Login /> }></Route>
-                            <Route path = "/reset" element = { <ResetPassword />} ></Route>
-                            <Route path = "/signup" element = { <Signup /> } ></Route>
-                            <Route path = "/profile" element = { <Profile /> } ></Route>
-                            <Route path = "/chat" element = { <Chat /> }></Route>
-                        </Route>
-                    </Routes>
-                </AuthProvider>
-            </Router>
-        </div>
-    );
+    const { currentUser } = useAuth();
+
+    return currentUser ? <AuthenticatedApp/> : <UnauthenticatedApp/>;
 }
 
 export default App;

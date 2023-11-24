@@ -11,12 +11,18 @@ import {getLocationData} from "./geocode";
 const AuthContext = React.createContext(undefined);
 
 export function useAuth() {
-    return useContext(AuthContext);
+    const val = useContext(AuthContext);
+
+    if (val === undefined) {
+        throw new Error("useAuth must be used within an AuthProvider");
+    }
+
+    return val;
 }
 
 export function AuthProvider ({ children }) {
 
-    const [currentUser, setCurrentUser] = useState(undefined);
+    const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [zipcode, setZipcode] = useState(undefined);
 
@@ -24,8 +30,12 @@ export function AuthProvider ({ children }) {
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
-    function login(email, password) {
-        return signInWithEmailAndPassword(auth, email, password);
+    async function login(email, password) {
+        const user = await signInWithEmailAndPassword(auth, email, password);
+        if (!user) {
+            // TODO : Handle Failed Login
+        }
+        setCurrentUser(user);
     }
 
     function logout() {
@@ -63,7 +73,7 @@ export function AuthProvider ({ children }) {
 
     useEffect(() => {
        setZipcode(getLocation());
-    })
+    }, []);
 
     const value  = {
         currentUser,

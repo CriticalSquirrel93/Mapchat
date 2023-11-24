@@ -1,4 +1,3 @@
-import {SidebarOption} from "./SidebarOption";
 import "../styles/Sidebar.css";
 
 
@@ -41,7 +40,7 @@ export function Sidebar() {
                 <hr/>
                 <div className="dropdown">
                     <a href="#" className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2"></img>
+                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"></img>
                         <strong>mdo</strong>
                     </a>
                     <ul className="dropdown-menu text-small shadow">
