@@ -18,7 +18,7 @@ export const Login = () => {
             setError("");
             setLoading(true);
             await login(email, password);
-            navigate('/profile');
+            navigate('/home');
         } catch (err) {
             setError("Invalid User Credentials, Please try again.");
             console.log(err.message);

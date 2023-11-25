@@ -1,9 +1,17 @@
 import { Outlet} from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export const Layout = () => {
+    const navigate = useNavigate();
+    const { user, logout } = useAuth();
 
-    const { user } = useAuth();
+    const handleLogout = async (e) => {
+        e.preventDefault();
+
+        await logout();
+        navigate("/login");
+    }
 
     return (
         <>
@@ -22,7 +30,10 @@ export const Layout = () => {
                                 <a className="nav-link" href="/chat">Chat</a>
                             </li>
                             <li className = "nav-item">
-                                <a className = "nav-link" href = { user ? "/profile" : "/login" }> { user ? user.email : "Login" } </a>
+                                <a className = "nav-link" href = { user ? "/profile" : "/login" }> { user ? "Profile" : "Profile" } </a>
+                            </li>
+                            <li className = "nav-item">
+                                <a className = "nav-link" href = { user ? (e) => handleLogout(e) : "/login" }> { user ? "Logout" : "Login" } </a>
                             </li>
                         </ul>
                     </div>

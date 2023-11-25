@@ -8,8 +8,8 @@ input[type="checkbox"].toggle{
 input[type="checkbox"].toggle + label{
     position: relative;
     display: flex;
-    flex-flow: column;
-    align-items: center;
+    /*flex-flow: column;
+    align-items: center;*/
     cursor: pointer;
 }
 
@@ -28,9 +28,9 @@ input[type="checkbox"].toggle + label::before{
 }
 
 input[type="checkbox"].toggle + label::after{
-    position: relative;
-    top: -2.45em;
-    left: -.55em;
+    position: absolute;
+    top: .05em;
+    left: .06em;
     content: "";
     width: .9em;
     height: .9em;
