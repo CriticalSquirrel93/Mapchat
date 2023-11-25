@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { rdb } from "../firebase";
-import { ref, update, onValue, orderByChild, equalTo, get, query } from "firebase/database";
+import { updateProfile } from "firebase/auth";
+import { ref, update, onValue, } from "firebase/database";
 import "../styles/Profile.css";
 import { Checkbox } from "./Checkbox";
 import { useAuth } from "../hooks/useAuth";
@@ -19,23 +20,7 @@ import { useAuth } from "../hooks/useAuth";
     const [checked, setChecked] = useState(false);
     const [username, setUsername] = useState('');
 
-    const checkUsername = () => {
-        console.log("Checking username...");
-        // check username in firebase
-        // if username is taken, console.log("Username is taken")
-        // else, console.log("Username is available")
-        const dbRef = ref(rdb, 'Data/Users/');
-        const queryRef = query(dbRef, orderByChild('username'), equalTo(username));
-        get(queryRef).then((snapshot) => {
-            if (snapshot.exists()) {
-                console.log("Username is taken");
-            } else {
-                console.log("Username is available");
-            }
-        })
-    }
-
-    const handleChange = (e) => {
+    const handleCheckboxChange = (e) => {
         // Set the checkbox boolean
         setChecked(e.target.checked);
 
@@ -52,7 +37,16 @@ import { useAuth } from "../hooks/useAuth";
     }
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
+        // Update the username in the firebase db.
 
+        updateProfile(user, {
+            displayName: username,
+        }).then(() => {
+            alert("Username updated successfully.");
+        }).catch((error) => {
+            alert(error);
+        });
     }
 
 
@@ -60,7 +54,7 @@ import { useAuth } from "../hooks/useAuth";
         e.preventDefault();
 
         await logout();
-        navigate("/login");
+        navigate('/login');
     }
 
     const updateSettingsRender = (targetElement, data) => {
@@ -88,33 +82,44 @@ import { useAuth } from "../hooks/useAuth";
         })
     },[user.uid])
 
-    useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            console.log(`I can see you're not typing. I can use "${username}" now!`);
-            checkUsername(username);
-        }, 1000);
-
-        return () => clearTimeout(timeoutId);
-    });
-
     return(
         <>
             <div className = "container">
                 <div className = "row justify-content-center">
                     <div className = "col-md-4 text-center">
-                        <p>Welcome <em className = "text-decoration-underline">{ user.email }</em>. You are logged in!</p>
+                        <p>Welcome <em className = "text-decoration-underline">{ user.displayName }</em>. You are logged in!</p>
                         <div className="input-group mb-3">
                             <span className="input-group-text" id="uname">@</span>
-                            <input type="text" className="form-control" id="username-change-input" placeholder={ user.displayName } aria-label="Username" onChange={(e) => handleUserOnChange(e)}></input>
-                            <button type = "submit" className = "btn btn-primary" onClick = {(e) => handleSubmit(e)}>Submit</button>
+                            <input type="text" className="form-control"
+                                   id="username-change-input"
+                                   placeholder={ user.displayName }
+                                   aria-label="Username"
+                                   onChange={(e) => handleUserOnChange(e)}></input>
+                            <button type = "submit"
+                                    className = "btn btn-primary"
+                                    onClick = {(e) => handleSubmit(e)}>Submit</button>
                         </div>
 
-                        <Checkbox id="dark" label={"Dark Mode"} onChange={(e) => handleChange(e)} className="toggle" />
-                        <Checkbox id="location" label={"Chat Locally?"} onChange={(e) => handleChange(e)} className="toggle" />
-                        <Checkbox id="business" label={"Business?"} onChange={(e) => handleChange(e)} className="toggle" />
-                        <Checkbox id="display" label={"Display Location?"} onChange={(e) => handleChange(e)} className="toggle" />
+                        <Checkbox id="dark"
+                                  label={"Dark Mode"}
+                                  onChange={(e) => handleCheckboxChange(e)}
+                                  className="toggle" />
+                        <Checkbox id="location"
+                                  label={"Chat Locally?"}
+                                  onChange={(e) => handleCheckboxChange(e)}
+                                  className="toggle" />
+                        <Checkbox id="business"
+                                  label={"Business?"}
+                                  onChange={(e) => handleCheckboxChange(e)}
+                                  className="toggle" />
+                        <Checkbox id="display"
+                                  label={"Display Location?"}
+                                  onChange={(e) => handleCheckboxChange(e)}
+                                  className="toggle" />
+
                         <div className = "d-grid gap-2 px-1">
-                            <button type = "submit" className = "btn btn-primary pt-3 pb-3" onClick = {(e) => handleLogout(e)}>Logout</button>
+                            <button type = "submit" className = "btn btn-primary pt-3 pb-3"
+                                    onClick = {(e) => handleLogout(e)}>Logout</button>
                         </div>
                     </div>
                 </div>

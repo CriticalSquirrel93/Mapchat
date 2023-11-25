@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
         setUser(user);
     }
 
-    function logout() {
+    async function logout() {
         return signOut(auth);
     }
 
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
        setZipcode(getLocation());
-    });
+    }, []);
 
     const value  = {
         user,

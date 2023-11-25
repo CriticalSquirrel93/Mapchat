@@ -1,12 +1,13 @@
 import { addDoc, collection } from "firebase/firestore";
-import { auth, db } from "../firebase";
+import { db } from "../firebase";
 import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 export function PostBox() {
 
     const [postMessage, setPostMessage] = useState("");
     const [postImage, setPostImage] = useState("");
-    const currentUser = auth.currentUser;
+    const { user } = useAuth();
 
     const sendPost = async (e) => {
         e.preventDefault();
@@ -14,9 +15,9 @@ export function PostBox() {
         try {
             // Use the 'collection' function and 'addDoc' function to add a document to the 'posts' collection
             await addDoc(collection(db, "posts"), {
-                username: currentUser.email,
-                displayName: currentUser.displayName,
-                verified: currentUser.emailVerified,
+                uid: user.email,
+                displayName: user.displayName,
+                verified: user.emailVerified,
                 message: postMessage,
             })
 
@@ -30,19 +31,20 @@ export function PostBox() {
     };
     return (
         <>
-            <div className="tweetBox">
+            <div className="container shadow">
                 <form>
-                    <div className="input-group">
+                    <div className="input-group mb-3">
                         <input
                             value={postMessage}
+                            className="form-control"
                             onChange={(e) => setPostMessage(e.target.value)}
                             placeholder="What's happening?"
-                            type="text"
+                            type="textbox"
                         />
+                        <button onClick={(e) => sendPost(e)} type="submit" className="btn btn-primary">
+                            Tweet
+                        </button>
                     </div>
-                    <button onClick={(e) => sendPost(e)} type="submit" className="btn btn-primary">
-                        Tweet
-                    </button>
                 </form>
             </div>
         </>

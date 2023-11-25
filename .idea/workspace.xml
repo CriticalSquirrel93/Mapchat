@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="38339443-aee4-40f3-8876-06a4c4c53e91" name="Changes" comment="Include chat application">
-      <change afterPath="$PROJECT_DIR$/src/styles/Profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Mapchat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Mapchat.iml" afterDir="false" />
+    <list default="true" id="38339443-aee4-40f3-8876-06a4c4c53e91" name="Changes" comment="Fixed issue with user not being available leading to every page 404'ing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Feed.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Feed.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Post.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PostBox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PostBox.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/AuthContext.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +25,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
         <option value="Python Script" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -71,6 +73,7 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ReactCreateComponentLastSelected&quot;: &quot;arrowFunctionComponent&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -83,7 +86,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -151,6 +154,17 @@
       <workItem from="1700102381183" duration="1071000" />
       <workItem from="1700103511171" duration="131000" />
       <workItem from="1700103979269" duration="393000" />
+      <workItem from="1700104488565" duration="143000" />
+      <workItem from="1700156213226" duration="14660000" />
+      <workItem from="1700417291250" duration="7962000" />
+      <workItem from="1700431850655" duration="2891000" />
+      <workItem from="1700508269844" duration="2864000" />
+      <workItem from="1700511386763" duration="6016000" />
+      <workItem from="1700549688746" duration="1391000" />
+      <workItem from="1700590930772" duration="583000" />
+      <workItem from="1700806090783" duration="399000" />
+      <workItem from="1700809043115" duration="397000" />
+      <workItem from="1700809460726" duration="15971000" />
     </task>
     <task id="LOCAL-00001" summary="Include chat application">
       <option name="closed" value="true" />
@@ -160,7 +174,44 @@
       <option name="project" value="LOCAL" />
       <updated>1698375997960</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Incorperating old Settings css to Profile.css. Still working on porting stuff over but there was some project file hiccups">
+      <created>1700104623811</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700104623812</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Compartmentalized individual settings into Checkbox.jsx; Still need to add functionality back, should be easier now that I've got this functioning.">
+      <created>1700182366217</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700182366217</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Got settings sync finished">
+      <created>1700425177705</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700425177705</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Updated app for auth states">
+      <option name="closed" value="true" />
+      <created>1700861601699</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1700861601699</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fixed issue with user not being available leading to every page 404'ing">
+      <option name="closed" value="true" />
+      <created>1700866621155</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700866621155</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,6 +230,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Include chat application" />
-    <option name="LAST_COMMIT_MESSAGE" value="Include chat application" />
+    <MESSAGE value="Incorperating old Settings css to Profile.css. Still working on porting stuff over but there was some project file hiccups" />
+    <MESSAGE value="Compartmentalized individual settings into Checkbox.jsx; Still need to add functionality back, should be easier now that I've got this functioning." />
+    <MESSAGE value="Got settings sync finished" />
+    <MESSAGE value="Updated app for auth states" />
+    <MESSAGE value="Fixed issue with user not being available leading to every page 404'ing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with user not being available leading to every page 404'ing" />
   </component>
 </project>

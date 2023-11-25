@@ -22,6 +22,8 @@ export function Feed() {
             unsubscribe();
         };
     }, []);
+
+
     return (
         <>
             <div className="container-fluid">
@@ -33,6 +35,7 @@ export function Feed() {
                             username={post.username}
                             verified={post.verified}
                             text={post.message}
+                            likes={post.likes}
                         />
                     ))}
                 </div>
