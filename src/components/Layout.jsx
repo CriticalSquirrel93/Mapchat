@@ -27,13 +27,13 @@ export const Layout = () => {
                                 <a className="nav-link active" aria-current="page" href={ user ? "/home" : "/" }>Home</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/chat">Chat</a>
+                                <a className="nav-link" href= { user ? "/chat" : "/login" }>Chat</a>
                             </li>
                             <li className = "nav-item">
-                                <a className = "nav-link" href = { user ? "/profile" : "/login" }> { user ? "Profile" : "Profile" } </a>
+                                <a className = "nav-link" href = { user ? "/profile" : "/login" }>Profile</a>
                             </li>
                             <li className = "nav-item">
-                                <a className = "nav-link" href = { user ? (e) => handleLogout(e) : "/login" }> { user ? "Logout" : "Login" } </a>
+                                <a className = "nav-link" to= {"/login"} onClick= {(e) => handleLogout(e)} style= {{cursor:'pointer'}}>Logout </a>
                             </li>
                         </ul>
                     </div>
