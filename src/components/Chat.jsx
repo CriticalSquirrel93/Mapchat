@@ -1,15 +1,36 @@
 import { useState, useEffect } from 'react';
 import { addDoc, collection, serverTimestamp, onSnapshot, query } from "firebase/firestore";
-import { auth, db } from "../firebase";
+import {auth, db, rdb} from "../firebase";
 import "../styles/Chat.css";
 import {where} from "firebase/firestore"
+import {useNavigate} from "react-router-dom";
+import {useAuth} from "../hooks/useAuth";
+import {onValue, ref} from "firebase/database";
 
 export const Chat = (props) => {
     const {room} = props;
     const [newMessage, setNewMessage] = useState("");
     const [messages, setMessages] = useState([]);
+    const [username, setUsername] = useState("");
 
-    const messagesRef = collection(db,"messages");
+    const { user } = useAuth();
+
+
+    useEffect(() => {
+        if (user) {
+            onValue(ref(rdb, 'Data/Usernames/' + user.uid + '/'), (snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    setUsername(data);
+
+                } else {
+                    setUsername(auth.currentUser.email);
+                }
+            })
+        }
+    },[user])
+
+    const messagesRef = collection(db,"rooms/" + room + "/messages/");
 
     useEffect(() => {
         const queryMessages = query(messagesRef, where("room", "==",room));
@@ -34,8 +55,10 @@ export const Chat = (props) => {
             text: newMessage,
             createdAt: serverTimestamp(),
             user: auth.currentUser.email,
+            username,
             room
         });
+        setNewMessage("");
     };
 
     return (
@@ -46,7 +69,7 @@ export const Chat = (props) => {
             <div className="messages">
                 {messages.map((message) => (
                     <div className="message" key={message.id}>
-                        <span className="text-white-50 user"> {message.user} </span>
+                        <span className="text-white-50 user"> {message.username} </span>
                         {message.text}
                     </div>
                     ))}
@@ -57,6 +80,7 @@ export const Chat = (props) => {
                     className="new-message-input"
                     placeholder="Type your message here..."
                     onChange={(e) => setNewMessage(e.target.value)}
+                    value={newMessage}
                     />
                 <button type="submit" className="send-button">
                     Send
@@ -64,7 +88,5 @@ export const Chat = (props) => {
             </form>
         </div>
     );
-
-
 
 };
