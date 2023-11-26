@@ -1,32 +1,67 @@
 import {Chat} from "./Chat";
-import {useState, useRef} from "react";
+import {useState, useRef, useEffect} from "react";
 import {getLocationData} from "../contexts/geocode";
 
 
 export const Room = () => {
-    const [room, setRoom] = useState(null);
+    const [state, setState] = useState({
+        loading: true,
+        room: false
+    });
     const roomInputRef = useRef(null);
-    const locData = getLocationData();
 
+    useEffect(() => {
+        const fetchData = async () => {
+            await getLocationData().then((result) => {
+                setState({
+                    loading: false,
+                    room: result.zipcode
+                });
+            });
+        };
 
+        fetchData().then(r => {
+            console.log("Location data fetched.");
+        });
+    }, []);
+
+    if (state.loading) {
+        return null;
+    } else {
+        return (
+            <div>
+                <Chat room={state.room}/>
+            </div>
+        )
+    }
+
+/*    getLocationData().then(response => {
+        setRoom(response.zipcode);
+        console.log(room);
+        return (
+            <div>
+                <Chat room={{room}}/>
+            </div>
+        )
+    }).catch(err => {
+        console.error("Location data not received");
+    });
+
+ */
+
+/*
     return (
         <div>
-            {room ? (
-                <Chat room={{room}}/>
+            {isLoading ? (
 
-            ): (
-                <div className="room">
-                    <label>Join your room :</label>
-                    <input ref={roomInputRef} />
-                    <button onClick={() => setRoom(roomInputRef.current.value)}>
-                        Enter Chat
-                    </button>
+                <div>
+                    Awaiting Location Data
                 </div>
+            ): (
+                <Chat room={{room}}/>
                 )}
-
-
-
-
         </div>
     );
+
+ */
 }

@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { get } from "firebase/database";
+import {get, ref} from "firebase/database";
 import { rdb } from "../firebase";
 
 export const Signup = () => {

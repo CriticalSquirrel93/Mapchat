@@ -5,11 +5,11 @@ import "../styles/Chat.css";
 import {where} from "firebase/firestore"
 
 export const Chat = (props) => {
-    const {room} = props
-    const [newMessage, setNewMessage] = useState("")
+    const {room} = props;
+    const [newMessage, setNewMessage] = useState("");
     const [messages, setMessages] = useState([]);
 
-    const messagesRef = collection(db,"messages")
+    const messagesRef = collection(db,"messages");
 
     useEffect(() => {
         const queryMessages = query(messagesRef, where("room", "==",room));
@@ -41,7 +41,7 @@ export const Chat = (props) => {
     return (
         <div className="chat-app">
             <div className="header">
-                <h1> Welcome to:Mapchat</h1>
+                <h1>Welcome to: {room}</h1>
             </div>
             <div className="messages">
                 {messages.map((message) => (

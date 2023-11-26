@@ -51,6 +51,7 @@ export const AuthProvider = ({ children }) => {
         });
     });
 
+    /*
     useEffect(() => {
         const fetchData = async () => {
             const data = await getLocationData();
@@ -62,6 +63,8 @@ export const AuthProvider = ({ children }) => {
             console.log("Location data fetched.");
         });
     }, []);
+
+     */
 
     const value  = {
         user,
