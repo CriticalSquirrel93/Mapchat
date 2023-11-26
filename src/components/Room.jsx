@@ -1,5 +1,5 @@
 import {Chat} from "./Chat";
-import {useState, useRef, useEffect} from "react";
+import {useState, useEffect} from "react";
 import {getLocationData} from "../contexts/geocode";
 
 
@@ -8,7 +8,6 @@ export const Room = () => {
         loading: true,
         room: false
     });
-    const roomInputRef = useRef(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,34 +33,4 @@ export const Room = () => {
             </div>
         )
     }
-
-/*    getLocationData().then(response => {
-        setRoom(response.zipcode);
-        console.log(room);
-        return (
-            <div>
-                <Chat room={{room}}/>
-            </div>
-        )
-    }).catch(err => {
-        console.error("Location data not received");
-    });
-
- */
-
-/*
-    return (
-        <div>
-            {isLoading ? (
-
-                <div>
-                    Awaiting Location Data
-                </div>
-            ): (
-                <Chat room={{room}}/>
-                )}
-        </div>
-    );
-
- */
 }

@@ -1,13 +1,32 @@
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useAuth } from "../hooks/useAuth";
+import {getLocationData} from "../contexts/geocode";
 
 export function PostBox() {
 
     const [postMessage, setPostMessage] = useState("");
-    const [postImage, setPostImage] = useState("");
+    const [state, setState] = useState({
+        loading: true,
+        zip: false
+    });
     const { user } = useAuth();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await getLocationData().then((result) => {
+                setState({
+                    loading: false,
+                    zip: result.zipcode
+                });
+            });
+        };
+
+        fetchData().then(r => {
+            console.log("Location data fetched.");
+        });
+    }, []);
 
     const sendPost = async (e) => {
         e.preventDefault();
@@ -15,9 +34,9 @@ export function PostBox() {
         try {
             // Use the 'collection' function and 'addDoc' function to add a document to the 'posts' collection
             await addDoc(collection(db, "posts"), {
-                uid: user.email,
-                displayName: user.displayName,
+                uid: user.uid,
                 verified: user.emailVerified,
+                zipcode: state.zip,
                 message: postMessage,
             })
 
@@ -34,12 +53,11 @@ export function PostBox() {
             <div className="container shadow">
                 <form>
                     <div className="input-group mb-3">
-                        <input
+                        <textarea
                             value={postMessage}
                             className="form-control"
                             onChange={(e) => setPostMessage(e.target.value)}
                             placeholder="What's happening?"
-                            type="textbox"
                         />
                         <button onClick={(e) => sendPost(e)} type="submit" className="btn btn-primary">
                             Tweet

@@ -14,12 +14,12 @@ import {
     query,
     orderBy
 } from "firebase/firestore";
-import {auth, db, rdb} from "../firebase";
+import { db, rdb } from "../firebase";
 import "../styles/Chat.css";
-import {where} from "firebase/firestore"
-import {useNavigate} from "react-router-dom";
-import {useAuth} from "../hooks/useAuth";
-import {onValue, ref} from "firebase/database";
+import { where } from "firebase/firestore"
+import { useAuth } from "../hooks/useAuth";
+import { onValue, ref } from "firebase/database";
+import { Sidebar } from "./Sidebar";
 import ReactScrollableFeed from "react-scrollable-feed";
 
 export const Chat = (props) => {
@@ -39,7 +39,7 @@ export const Chat = (props) => {
                     setUsername(data);
 
                 } else {
-                    setUsername(auth.currentUser.email);
+                    setUsername(user.email);
                 }
             })
         }
@@ -73,7 +73,7 @@ export const Chat = (props) => {
         await addDoc(messagesRef, {
             text: newMessage,
             createdAt: serverTimestamp(),
-            user: auth.currentUser.email,
+            user: user.uid,
             username,
             room
         });
@@ -82,33 +82,44 @@ export const Chat = (props) => {
 
 
     return (
-        <div className="chat-app">
-            <div className="header">
-                <h1>Welcome to: {room}</h1>
-            </div>
-                <div className="messages">
-                    <ReactScrollableFeed>
-                        {messages.map((message) => (
-                        <div className="message" key={message.id}>
-                            <span className="text-white-50 user"> {message.username} </span>
-                            {message.text}
+        <>
+            <div className="container">
+                <div className="container">
+                    <div className="row">
+                        <div className="col col-3">
+                            <Sidebar />
                         </div>
-                    ))}
-                    </ReactScrollableFeed>
+                        <div className="col col-9">
+                            <div className="card shadow chat-app">
+                                <div className="card-header">
+                                    <span className="card-title fw-semibold fs-2">Now Chatting with {room}</span>
+                                </div>
+                                <div className="card-body messages justify-content-evenly" style={{height: 50 + 'vh'}}>
+                                    <ReactScrollableFeed>
+                                        {messages.map((message) => (
+                                            <div className="message mb-1" key={message.id}>
+                                                <span className="text-white-50 mx-2 user"> {message.username} </span>
+                                                {message.text}
+                                            </div>
+                                        ))}
+                                    </ReactScrollableFeed>
+                                </div>
+
+                                <div className="card-footer">
+                                    <form onSubmit={(e) => handleSubmit(e)} className="input-group p-3">
+                                        <input type="text" className="form-control" id="newMessage" value={newMessage}
+                                            placeholder="Type your message here..."
+                                            onChange={(e) => setNewMessage(e.target.value)}
+                                        />
+                                        <button type="submit"
+                                                className="btn shadow btn-primary">Send</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-            <form onSubmit={handleSubmit} className="new-message-form">
-                <input
-                    className="new-message-input"
-                    placeholder="Type your message here..."
-                    onChange={(e) => setNewMessage(e.target.value)}
-                    value={newMessage}
-                    />
-                <button type="submit" className="send-button">
-                    Send
-                </button>
-            </form>
-        </div>
+            </div>
+        </>
     );
-
 };

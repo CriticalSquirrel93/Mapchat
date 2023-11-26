@@ -31,11 +31,10 @@ export function Feed() {
                     <PostBox />
                     {posts.map((post) => (
                         <Post
-                            displayName={post.displayName}
-                            username={post.username}
+                            posterId={post.uid}
                             verified={post.verified}
+                            zipcode={post.zipcode}
                             text={post.message}
-                            likes={post.likes}
                         />
                     ))}
                 </div>

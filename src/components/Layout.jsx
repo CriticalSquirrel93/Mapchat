@@ -21,7 +21,6 @@ export const Layout = () => {
             onValue(ref(rdb, 'Data/Users/' + user.uid + '/Settings/'), (snapshot) => {
                 if (snapshot.exists()) {
                     const data = snapshot.val();
-                    console.log(data);
                     let mode = ((data['dark']) ? 'dark' : 'light');
 
                     document.documentElement.setAttribute('data-bs-theme', mode);

@@ -26,7 +26,7 @@ export async function getLocationData() {
         }
 
         const data = await response.json();
-        console.log('Address data retrieved:', data);
+        //console.log('Address data retrieved:', data);
         const zip = data.results[0].address_components[0].short_name;
 
         return {

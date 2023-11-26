@@ -4,7 +4,7 @@ import { Feed } from "./Feed";
 export function Homepage() {
     return (
         <>
-            <div className="container">
+            <div className="container overflow-y-auto ">
                 <div className="container">
                     <div className="row">
                         <div className="col col-3">

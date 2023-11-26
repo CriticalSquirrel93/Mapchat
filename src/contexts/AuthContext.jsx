@@ -4,14 +4,12 @@ import { auth,
     logInWithEmailAndPassword,
     sendPasswordReset,
     logoutFirebase } from "../firebase";
-import { getLocationData } from "./geocode";
 
 export const AuthContext = React.createContext(undefined);
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [locationInfo, setLocationInfo] = useState(null);
 
     async function signup(name, email, password) {
         return await registerWithEmailAndPassword(name, email, password);
@@ -51,24 +49,8 @@ export const AuthProvider = ({ children }) => {
         });
     });
 
-    /*
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await getLocationData();
-            setLocationInfo(data);
-            console.log(data.zipcode);
-        };
-
-        fetchData().then(r => {
-            console.log("Location data fetched.");
-        });
-    }, []);
-
-     */
-
     const value  = {
         user,
-        locationInfo,
         login,
         signup,
         logout,

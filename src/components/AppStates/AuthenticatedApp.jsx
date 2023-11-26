@@ -14,7 +14,7 @@ import { Room } from "../Room";
 export const AuthenticatedApp = () => {
     return (
         <>
-            <div className="App">
+            <div className="App content-wrap">
                 <Router>
                     <Routes>
                         <Route path = "/" element = { <Layout /> }>
