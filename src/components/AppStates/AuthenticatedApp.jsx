@@ -9,6 +9,7 @@ import {Chat} from "../Chat";
 import React from "react";
 import Profile from "../Profile";
 import {NotFound} from "../NotFound";
+import {Room} from "../room";
 
 export const AuthenticatedApp = () => {
     return (
@@ -24,6 +25,7 @@ export const AuthenticatedApp = () => {
                             <Route path = "/signup" element = { <Signup /> } ></Route>
                             <Route path = "/profile" element = { <Profile /> } ></Route>
                             <Route path = "/chat" element = { <Chat /> }></Route>
+                            <Route path = "/room" element={ <Room />}></Route>
                             <Route path="*" element={ <NotFound />} />
                         </Route>
                     </Routes>

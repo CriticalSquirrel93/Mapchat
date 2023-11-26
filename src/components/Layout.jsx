@@ -27,7 +27,7 @@ export const Layout = () => {
                                 <a className="nav-link active" aria-current="page" href={ user ? "/home" : "/" }>Home</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href= { user ? "/chat" : "/login" }>Chat</a>
+                                <a className="nav-link" href= { user ? "/room" : "/login" }>Chat</a>
                             </li>
                             <li className = "nav-item">
                                 <a className = "nav-link" href = { user ? "/profile" : "/login" }>Profile</a>

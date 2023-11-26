@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38339443-aee4-40f3-8876-06a4c4c53e91" name="Changes" comment="Fixed issue with user not being available leading to every page 404'ing">
+      <change afterPath="$PROJECT_DIR$/src/components/room.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Feed.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Feed.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Post.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PostBox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PostBox.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/AuthContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AppStates/AuthenticatedApp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppStates/AuthenticatedApp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Chat.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,6 +162,7 @@
       <workItem from="1700806090783" duration="399000" />
       <workItem from="1700809043115" duration="397000" />
       <workItem from="1700809460726" duration="15971000" />
+      <workItem from="1700965569309" duration="5192000" />
     </task>
     <task id="LOCAL-00001" summary="Include chat application">
       <option name="closed" value="true" />
