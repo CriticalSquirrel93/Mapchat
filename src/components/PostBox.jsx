@@ -42,7 +42,6 @@ export function PostBox() {
 
             // Clear the input fields
             setPostMessage("");
-            setPostImage("");
         } catch (error) {
             // Handle any potential errors here
             console.error("Error adding document: ", error);
