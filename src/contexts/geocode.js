@@ -1,42 +1,31 @@
 import { serverTimestamp } from 'firebase/firestore';
 
 export async function getLocationData() {
-    let zip, lat, long, time;
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                lat = position.coords.latitude;
-                long = position.coords.longitude;
-                time = serverTimestamp();
-                const url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
-                    + lat + "," + long + "&result_type=postal_code&key=AIzaSyACt-GVyeV6bjLcEjSFLm_GMQy1HDJxiJQ";
-                // please be careful with this api key: high enough usage will cost me money!! -Nico
-                fetch(url)
-                    .then(response => {
-                            if (response.ok) {
-                                console.log('Address data retrieved!');
-                            } else {
-                                console.error('Data NOT retrieved.');
-                            }
-                            response.json()
-                                .then(data => {
-                                    console.log(data);
-                                    zip = data.results[0].address_components[0].short_name;
-                                    console.log(zip);
-                                });
-                        }
-                    )
-                    .catch(error => console.error(error))
-                // JSON result in `data` variable
-            }
-        );
+    try {
+        const position = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
+
+        const { latitude, longitude } = position.coords;
+        const time = serverTimestamp();
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&result_type=postal_code&key=AIzaSyACt-GVyeV6bjLcEjSFLm_GMQy1HDJxiJQ`;
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            console.error('Data NOT retrieved.');
+            return null;
+        }
+
+        const data = await response.json();
+        console.log('Address data retrieved:', data);
+        const zip = data.results[0].address_components[0].short_name;
 
         return {
             zipcode: zip,
             timestamp: time
         };
-
-    } else {
-        alert("Sorry, Geolocation is not supported by your browser.");
+    } catch (error) {
+        console.error(error);
+        return null;
     }
 }
