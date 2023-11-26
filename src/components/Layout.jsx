@@ -1,6 +1,9 @@
-import { Outlet} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import {useEffect} from "react";
+import {onValue, ref} from "firebase/database";
+import {rdb} from "../firebase";
 
 export const Layout = () => {
     const navigate = useNavigate();
@@ -12,6 +15,22 @@ export const Layout = () => {
         await logout();
         navigate("/login");
     }
+
+    useEffect(() => {
+        if (user) {
+            onValue(ref(rdb, 'Data/Users/' + user.uid + '/Settings/'), (snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    console.log(data);
+                    let mode = ((data['dark']) ? 'dark' : 'light');
+
+                    document.documentElement.setAttribute('data-bs-theme', mode);
+                } else {
+                    console.log("Snapshot data did not exist for Account Settings.");
+                }
+            })
+        }
+    },[user])
 
     return (
         <>
@@ -30,10 +49,10 @@ export const Layout = () => {
                                 <a className="nav-link" href= { user ? "/room" : "/login" }>Chat</a>
                             </li>
                             <li className = "nav-item">
-                                <a className = "nav-link" href = { user ? "/profile" : "/login" }>Profile</a>
+                                <a className = "nav-link" href = { user ? "/profile" : "/login" }>{ user ? user.displayName : "Profile" }</a>
                             </li>
                             <li className = "nav-item">
-                                <a className = "nav-link" to= {"/login"} onClick= {(e) => handleLogout(e)} style= {{cursor:'pointer'}}>Logout </a>
+                                <Link className = "nav-link" to = "/login" onClick= {(e) => handleLogout(e)} style= {{cursor:'pointer'}}>{ user ? "Logout" : "Login" }</Link>
                             </li>
                         </ul>
                     </div>

@@ -1,35 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { auth } from "../firebase";
-import { createUserWithEmailAndPassword, sendPasswordResetEmail,
-    signInWithEmailAndPassword, signOut } from "firebase/auth";
-import {getLocationData} from "./geocode";
+import { auth,
+    registerWithEmailAndPassword,
+    logInWithEmailAndPassword,
+    sendPasswordReset,
+    logoutFirebase } from "../firebase";
+import { getLocationData } from "./geocode";
 
 export const AuthContext = React.createContext(undefined);
 
 export const AuthProvider = ({ children }) => {
-
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [zipcode, setZipcode] = useState(undefined);
+    const [locationInfo, setLocationInfo] = useState(null);
 
-    function signup(email, password) {
-        return createUserWithEmailAndPassword(auth, email, password);
+    async function signup(name, email, password) {
+        return await registerWithEmailAndPassword(name, email, password);
     }
 
     async function login(email, password) {
-        const user = await signInWithEmailAndPassword(auth, email, password);
-        if (!user) {
-            // TODO : Handle Failed Login
-        }
+        const user = await logInWithEmailAndPassword(email, password);
         setUser(user);
     }
 
     async function logout() {
-        return signOut(auth);
+        return logoutFirebase();
     }
 
     function resetPassword(email) {
-        return sendPasswordResetEmail(auth, email);
+        return sendPasswordReset(email);
     }
 
     function updateEmail(email) {
@@ -38,10 +36,6 @@ export const AuthProvider = ({ children }) => {
 
     function updatePassword(password) {
         return user.updatePassword(password);
-    }
-
-    function getLocation() {
-        return getLocationData();
     }
 
     useEffect(() => {
@@ -58,12 +52,20 @@ export const AuthProvider = ({ children }) => {
     });
 
     useEffect(() => {
-       setZipcode(getLocation());
+        const fetchData = async () => {
+            const data = await getLocationData();
+            setLocationInfo(data);
+            console.log(data.zipcode);
+        };
+
+        fetchData().then(r => {
+            console.log("Location data fetched.");
+        });
     }, []);
 
     const value  = {
         user,
-        zipcode,
+        locationInfo,
         login,
         signup,
         logout,

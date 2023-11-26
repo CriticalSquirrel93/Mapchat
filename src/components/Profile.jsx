@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { rdb } from "../firebase";
 import { updateProfile } from "firebase/auth";
-import { ref, update, onValue, } from "firebase/database";
+import { ref, update, onValue, get } from "firebase/database";
 import "../styles/Profile.css";
 import { Checkbox } from "./Checkbox";
 import { useAuth } from "../hooks/useAuth";
@@ -16,8 +16,12 @@ import { useAuth } from "../hooks/useAuth";
  export const Profile = () => {
     const navigate = useNavigate();
     const { user, logout } = useAuth();
+    const [, updateState] = useState();
+    const forceUpdate = useCallback(() => updateState({}), []);
 
     const [checked, setChecked] = useState(false);
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const [username, setUsername] = useState('');
 
     const handleCheckboxChange = (e) => {
@@ -36,18 +40,65 @@ import { useAuth } from "../hooks/useAuth";
         setUsername(e.target.value);
     }
 
+    const checkUsername = async (username) => {
+        const usernamesRef = ref(rdb, 'Data/Usernames/');
+        const usernamesSnapshot = await get(usernamesRef);
+
+        if (usernamesSnapshot.exists()) {
+            const usernamesData = usernamesSnapshot.val();
+            const usernames = Object.values(usernamesData);
+
+            // Check if the new username already exists
+            return !usernames.includes(username);
+        }
+
+        return true; // If the node doesn't exist, the username is unique.
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Update the username in the firebase db.
 
-        updateProfile(user, {
-            displayName: username,
-        }).then(() => {
-            alert("Username updated successfully.");
-        }).catch((error) => {
-            alert(error);
-        });
-    }
+        if (username.length >= 6 && username.length <= 20 && username !== user.displayName && username !== null)
+        {
+            try {
+                setError('');
+                setLoading(true);
+                // Get the new username from the form
+                const newUsername = username
+
+                // Check if the new username is unique
+                const isUsernameUnique = await checkUsername(newUsername);
+
+                if (!isUsernameUnique) {
+                    alert("Username already exists. Please choose a different one.");
+                    return;
+                }
+
+                // Update the username in the firebase db.
+                updateProfile(user, {
+                    displayName: newUsername,
+                }).then(() => {
+                    // Update the username in the Data/Usernames/ node
+                    update(ref(rdb, 'Data/Usernames/'), {
+                        [user.uid]: newUsername,
+                    });
+
+                    alert("Username updated successfully.");
+                }).catch((error) => {
+                    alert(error);
+                });
+                navigate("/home");
+            } catch (err) {
+                setError("Sorry, something went wrong. Please try again.");
+                console.log(err.message);
+            }
+        } else {
+            setError("Please enter a valid username.");
+
+        }
+        setLoading(false);
+        forceUpdate();
+    };
 
 
     const handleLogout = async (e) => {
@@ -88,6 +139,11 @@ import { useAuth } from "../hooks/useAuth";
                 <div className = "row justify-content-center">
                     <div className = "col-md-4 text-center">
                         <p>Welcome <em className = "text-decoration-underline">{ user.displayName }</em>. You are logged in!</p>
+                        { "" !== error &&
+                            <div className = "alert alert-warning" role = "alert">
+                                { error }
+                            </div>
+                        }
                         <div className="input-group mb-3">
                             <span className="input-group-text" id="uname">@</span>
                             <input type="text" className="form-control"

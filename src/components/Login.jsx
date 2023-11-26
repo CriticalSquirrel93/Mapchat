@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useAuth } from "../hooks/useAuth";
 
 export const Login = () => {
@@ -8,7 +8,16 @@ export const Login = () => {
     const [error, setError] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { login } = useAuth();
+    const { user, login } = useAuth();
+
+    // Redirect user to home page if they are already logged in.
+    useEffect(() => {
+        if (loading) {
+            // maybe trigger a loading screen
+            return;
+        }
+        if (user) navigate("/home");
+    }, [user, loading]);
 
 
     const handleSubmit = async (e) => {

@@ -1,15 +1,15 @@
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import {Layout} from "../Layout";
-import {Landing} from "../Landing";
-import {Homepage} from "../Homepage";
-import {Login} from "../Login";
-import {ResetPassword} from "../ResetPassword";
-import {Signup} from "../Signup";
-import {Chat} from "../Chat";
 import React from "react";
-import Profile from "../Profile";
-import {NotFound} from "../NotFound";
-import {Room} from "../room";
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import { Layout } from "../Layout";
+import { Landing } from "../Landing";
+import { Homepage } from "../Homepage";
+import { Login } from "../Login";
+import { ResetPassword } from "../ResetPassword";
+import { Signup } from "../Signup";
+import { Chat } from "../Chat";
+import { Profile } from "../Profile";
+import { NotFound } from "../NotFound";
+import { Room } from "../Room";
 
 export const AuthenticatedApp = () => {
     return (
