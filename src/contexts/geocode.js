@@ -1,3 +1,12 @@
+/*
+Credit:
+    * GitHub:
+        https://gist.github.com/bomsn/ca43368ff4cd554a612871ddfa18c4c9
+    * Google maps geocoding documentation:
+        https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding
+    * Nico Stovall
+ */
+
 import { serverTimestamp } from 'firebase/firestore';
 
 export async function getLocationData() {

@@ -1,3 +1,10 @@
+/*
+Credit:
+    * https://www.youtube.com/watch?v=0gLr-pBIPhI&ab_channel=PedroTech
+    * Cole (Built out general chat functionality)
+    * Nico (Implemented rooms based on location)
+ */
+
 import { useState, useEffect } from 'react';
 import {
     addDoc,
@@ -13,6 +20,7 @@ import {where} from "firebase/firestore"
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../hooks/useAuth";
 import {onValue, ref} from "firebase/database";
+import ReactScrollableFeed from "react-scrollable-feed";
 
 export const Chat = (props) => {
     const {room} = props;
@@ -72,19 +80,22 @@ export const Chat = (props) => {
         setNewMessage("");
     };
 
+
     return (
         <div className="chat-app">
             <div className="header">
                 <h1>Welcome to: {room}</h1>
             </div>
-            <div className="messages">
-                {messages.map((message) => (
-                    <div className="message" key={message.id}>
-                        <span className="text-white-50 user"> {message.username} </span>
-                        {message.text}
-                    </div>
+                <div className="messages">
+                    <ReactScrollableFeed>
+                        {messages.map((message) => (
+                        <div className="message" key={message.id}>
+                            <span className="text-white-50 user"> {message.username} </span>
+                            {message.text}
+                        </div>
                     ))}
-            </div>
+                    </ReactScrollableFeed>
+                </div>
 
             <form onSubmit={handleSubmit} className="new-message-form">
                 <input
