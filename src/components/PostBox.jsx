@@ -1,4 +1,4 @@
-import { addDoc, collection } from "firebase/firestore";
+import {addDoc, collection, serverTimestamp} from "firebase/firestore";
 import { db } from "../firebase";
 import {useEffect, useState} from "react";
 import { useAuth } from "../hooks/useAuth";
@@ -35,6 +35,7 @@ export function PostBox() {
             // Use the 'collection' function and 'addDoc' function to add a document to the 'posts' collection
             await addDoc(collection(db, "posts"), {
                 uid: user.uid,
+                createdAt: serverTimestamp(),
                 verified: user.emailVerified,
                 zipcode: state.zip,
                 message: postMessage,
