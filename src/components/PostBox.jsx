@@ -59,7 +59,7 @@ export function PostBox() {
                             placeholder="What's happening?"
                         />
                         <button onClick={(e) => sendPost(e)} type="submit" className="btn btn-primary">
-                            Tweet
+                            Post
                         </button>
                     </div>
                 </form>
