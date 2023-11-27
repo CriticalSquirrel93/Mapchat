@@ -1,6 +1,7 @@
 import {Chat} from "./Chat";
 import {useState, useEffect} from "react";
 import {getLocationData} from "../contexts/geocode";
+import {Homepage} from "./Homepage";
 
 
 export const Room = () => {
@@ -16,6 +17,9 @@ export const Room = () => {
                     loading: false,
                     room: result.zipcode
                 });
+            }).catch((err) => {
+                alert("Location required to chat!\n\nPlease refresh and allow mapchat to access your location.");
+                //return Homepage();
             });
         };
 
