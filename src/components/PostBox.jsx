@@ -11,15 +11,16 @@ import { useAuth } from "../hooks/useAuth";
 import {getLocationData} from "../contexts/geocode";
 
 export function PostBox() {
-    // allows users to post to a live feed.
-    const [postMessage, setPostMessage] = useState(""); // contains message input by user
+    // Post message is the message to be posted, setPostMessage is the function to set the message
+    const [postMessage, setPostMessage] = useState("");
+    // state contains loading and zip, loading is true if loading, else false, zip contains user zipcode, else false
     const [state, setState] = useState({
         loading: true,
         zip: false
-    }); // zip: contains user zipcode, else false, loading: true if loading, else false
+    });
     const { user } = useAuth(); // user object containing username, email, uid, etc.
 
-    useEffect(() => { // occurrs exactly once per PostBox call
+    useEffect(() => { // occurs exactly once per PostBox call
         const fetchData = async () => { //get location data from getLocationData()
             await getLocationData().then((result) => {
                 setState({

@@ -1,6 +1,6 @@
 /*
 Description:
-    This file contains the chat application. Currently this chat only functions in the location base room format,
+    This file contains the chat application. Currently, this chat only functions in the location base room format,
     in the future we hope to implement direct messaging. This same function can be edited to allow for this.
 Credit:
     * https://www.youtube.com/watch?v=0gLr-pBIPhI&ab_channel=PedroTech
