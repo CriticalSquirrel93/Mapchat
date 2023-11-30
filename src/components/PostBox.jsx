@@ -1,3 +1,9 @@
+/*
+Description:
+    This file contains the PostBox function which provides functionality for users to post to the feed
+Credit:
+    * Ash
+ */
 import {addDoc, collection, serverTimestamp} from "firebase/firestore";
 import { db } from "../firebase";
 import {useEffect, useState} from "react";
@@ -5,21 +11,21 @@ import { useAuth } from "../hooks/useAuth";
 import {getLocationData} from "../contexts/geocode";
 
 export function PostBox() {
-
-    const [postMessage, setPostMessage] = useState("");
+    // allows users to post to a live feed.
+    const [postMessage, setPostMessage] = useState(""); // contains message input by user
     const [state, setState] = useState({
         loading: true,
         zip: false
-    });
-    const { user } = useAuth();
+    }); // zip: contains user zipcode, else false, loading: true if loading, else false
+    const { user } = useAuth(); // user object containing username, email, uid, etc.
 
-    useEffect(() => {
-        const fetchData = async () => {
+    useEffect(() => { // occurrs exactly once per PostBox call
+        const fetchData = async () => { //get location data from getLocationData()
             await getLocationData().then((result) => {
                 setState({
                     loading: false,
                     zip: result.zipcode
-                });
+                }); // upon promise resolution update loading/zip
             });
         };
 
@@ -39,7 +45,7 @@ export function PostBox() {
                 verified: user.emailVerified,
                 zipcode: state.zip,
                 message: postMessage,
-            })
+            }) // create a new collection in the database.
 
             // Clear the input fields
             setPostMessage("");

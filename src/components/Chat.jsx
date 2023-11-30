@@ -1,4 +1,7 @@
 /*
+Description:
+    This file contains the chat application. Currently this chat only functions in the location base room format,
+    in the future we hope to implement direct messaging. This same function can be edited to allow for this.
 Credit:
     * https://www.youtube.com/watch?v=0gLr-pBIPhI&ab_channel=PedroTech
     * Cole (Built out general chat functionality)
@@ -23,17 +26,21 @@ import { Sidebar } from "./Sidebar";
 import ReactScrollableFeed from "react-scrollable-feed";
 
 export const Chat = (props) => {
-    const {room} = props;
-    const [newMessage, setNewMessage] = useState("");
-    const [messages, setMessages] = useState([]);
-    const [username, setUsername] = useState("");
-
-    const { user } = useAuth();
-
+    /* returns chatroom page for user's location
+     * props: contains the zip code (or other room name in the future)
+        This value is generated in Room.jsx and passed to the chat function
+     */
+    const {room} = props; // room name (user zipcode)
+    const [newMessage, setNewMessage] = useState(""); // message: from user input
+    const [messages, setMessages] = useState([]); // array of chat messages in the room (sorted by time)
+    const [username, setUsername] = useState(""); // current user username
+    const { user } = useAuth(); // user object containing user info such as username, email, uid, etc.
 
     useEffect(() => {
-        if (user) {
+        // runs contained code once
+        if (user) { // if the user exists (ensures that a user is logged in)
             onValue(ref(rdb, 'Data/Usernames/' + user.uid + '/'), (snapshot) => {
+                // take snapshot of current user data to retrieve username or email.
                 if (snapshot.exists()) {
                     const data = snapshot.val();
                     setUsername(data);
@@ -45,19 +52,20 @@ export const Chat = (props) => {
         }
     },[user])
 
-    const messagesRef = collection(db,"messages/");
+    const messagesRef = collection(db,"messages/"); // path to
+                                                                                                      // get messages
+                                                                                                      // from database
 
     useEffect(() => {
-        const queryMessages = query(
+        const queryMessages = query( // fill with messages for room
             messagesRef,
-            where("room", "==",room),
-            orderBy("createdAt")
+            where("room", "==",room), // get messages with element room such that room == zipcode
+            orderBy("createdAt")            // order messages by timestamp
             );
         const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
             let messages = [];
-            snapshot.forEach((doc) => {
+            snapshot.forEach((doc) => { // append messages
                 messages.push({...doc.data(), id: doc.id});
-
             });
             setMessages(messages);
         });

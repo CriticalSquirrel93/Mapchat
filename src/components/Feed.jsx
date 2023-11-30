@@ -1,3 +1,9 @@
+/*
+Description:
+    Collects messages for the appropriate location based feed and displays them.
+Credit:
+    * Ash
+ */
 import {collection, onSnapshot, orderBy, query, where} from "firebase/firestore";
 import {db} from "../firebase";
 import {useEffect, useState} from "react";
@@ -5,12 +11,12 @@ import {PostBox} from "./PostBox";
 import {Post} from "./Post";
 
 export function Feed() {
-
-    const [posts, setPosts] = useState([]);
+    // displays posts collected from the database
+    const [posts, setPosts] = useState([]); // array of posts as collected from firebase
     const queryPosts = query(
         collection(db,"posts/"),
         orderBy("createdAt", "desc"),
-    );
+    ); // set queryPosts to database object containing posts sorted by timestamp
 
     useEffect(() => {
         const unsubscribe = onSnapshot(queryPosts, (snapshot) => {
