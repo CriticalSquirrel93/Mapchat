@@ -10,7 +10,8 @@ Usage:
 Credit:
     * Original content authored by Chris in Django + Firebase
     * Ported to React + Firebase by Ash
-    * Some parts were adapted from the following tutorial: https://www.youtube.com/watch?v=PKwu15ldZ7k
+    * Some parts were adapted from the following tutorial during the porting process
+    * https://www.youtube.com/watch?v=PKwu15ldZ7k
 */
 // Import necessary dependencies from React and Firebase
 import { useEffect, useState, useCallback } from "react";

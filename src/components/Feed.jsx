@@ -2,7 +2,8 @@
     Description:
         Collects messages for the appropriate location-based feed and displays them.
     Credit:
-        * Ash
+        * Ash for main code elements.
+        * Cole for concept & modeling out the database & how the components should interact
 */
 // Import necessary dependencies from Firebase and React
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
